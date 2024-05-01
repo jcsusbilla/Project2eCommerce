@@ -16,4 +16,5 @@
     <string name="logged_in">LOGGED IN</string>
     <string name="preference_file_key">eCommPreferenceFileName</string>
     <string name="preference_userId_key">eCommPreferenceUserIdKey</string>
+    <string name="sign_up">SIGN UP</string>
 </resources>
