@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     Boolean stock = true;
     private int loggedInUserId = -1;
     private User user;
+
+    //Buttons
+    Button adminButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

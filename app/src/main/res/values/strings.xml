@@ -16,4 +16,13 @@
     <string name="logged_in">LOGGED IN</string>
     <string name="preference_file_key">eCommPreferenceFileName</string>
     <string name="preference_userId_key">eCommPreferenceUserIdKey</string>
+    <string name="admin">Admin</string>
+    <string name="welcome_admin">Welcome Admin</string>
+    <string name="edit_user">Edit User</string>
+    <string name="edit_item">Edit Item</string>
+    <string name="add_item">Add Item</string>
+    <string name="edit_user_admin">Edit User/Admin</string>
+    <string name="return">Return</string>
+    <string name="return">Return</string>
+    <string name="back">Back</string>
 </resources>
