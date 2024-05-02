@@ -43,15 +43,12 @@ public class LoginActivity extends AppCompatActivity {
         }
         LiveData<User> userObserver = repository.getUserByUserName(username);
         userObserver.observe(this, user -> {
+            //verify if user is in database
             if(user != null){
                 String password = binding.passwordLoginEditText.getText().toString();
                 if(password.equals(user.getPassword())){
-//                    SharedPreferences sharedPreferences = getApplicationContext()
-//                            .getSharedPreferences(MainActivity.SHARED_PREFERENCE_USERID_KEY, Context.MODE_PRIVATE); //get list of references associated with this program
-//                    SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-//                    sharedPrefEditor.putInt(MainActivity.SHARED_PREFERENCE_USERID_KEY, user.getId());
-//                    sharedPrefEditor.apply();
                     startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
+                    //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId(), user.getUsername(), user.getPassword(), user.isAdmin()));
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setSelection(0);

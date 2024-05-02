@@ -46,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     //Buttons
     Button adminButton;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +62,16 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+
+        //check if user is an admin, if so display the admin button
+        adminButton = binding.adminButton;
+
+//        boolean isAdmin = getIntent().getBooleanExtra("isAdmin", true);
+//        if(isAdmin){
+//            adminButton.setVisibility(View.VISIBLE);
+//        } else {
+//            adminButton.setVisibility(View.INVISIBLE);
+//        }
 
         binding.purchaseItemsButton.setOnClickListener(new View.OnClickListener() {
            @Override
@@ -169,10 +178,13 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
         sharedPrefEditor.apply();
     }
-
     static Intent mainActivityIntentFactory(Context context, int userId){
+    //static Intent mainActivityIntentFactory(Context context, int userId, String username, String password, boolean isAdmin){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
+//        intent.putExtra(MAIN_ACTIVITY_USER_ID, username);
+//        intent.putExtra(MAIN_ACTIVITY_USER_ID, password);
+//        intent.putExtra(MAIN_ACTIVITY_USER_ID, isAdmin);
         return intent;
     }
 

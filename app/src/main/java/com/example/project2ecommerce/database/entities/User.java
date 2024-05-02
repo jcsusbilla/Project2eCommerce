@@ -17,10 +17,10 @@ public class User {
     private boolean isAdmin;
 
     //constructor
-    public User(String username, String password) {
+    public User(String username, String password, boolean isAdmin) {
         this.username = username;
         this.password = password;
-        isAdmin = false;
+        this.isAdmin = isAdmin;
     }
 
     //getters and setters

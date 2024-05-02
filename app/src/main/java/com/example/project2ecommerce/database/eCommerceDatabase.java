@@ -57,11 +57,11 @@ public abstract class eCommerceDatabase extends RoomDatabase {
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
                 //admin
-                User admin = new User("admin1", "admin1");
+                User admin = new User("admin1", "admin1", false);
                 admin.setAdmin(true);
                 dao.insert(admin);
                 //user
-                User testUser1 = new User("testuser1", "testuser1");
+                User testUser1 = new User("testuser1", "testuser1", true);
                 dao.insert(testUser1);
             });
         }
