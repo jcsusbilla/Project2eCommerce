@@ -30,7 +30,8 @@ public abstract class eCommerceDatabase extends RoomDatabase {
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    static eCommerceDatabase getDatabase(final Context context){
+
+    public static eCommerceDatabase getDatabase(final Context context){
         if(INSTANCE == null){
             synchronized (eCommerceDatabase.class){
                 if(INSTANCE == null){

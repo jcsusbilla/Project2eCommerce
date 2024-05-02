@@ -23,7 +23,7 @@ public class eCommerceRepository {
     private static eCommerceRepository repository;
 
     //constructor
-    private eCommerceRepository(Application application){
+    public eCommerceRepository(Application application){
         eCommerceDatabase db = eCommerceDatabase.getDatabase(application);
         this.ecommerceDAO = db.ecommerceDAO();
         this.userDAO = db.userDAO();
@@ -89,6 +89,11 @@ public class eCommerceRepository {
 
     public LiveData<User> getUserByUserId(int userId) {          //LiveData is automatically muiltithreaded
         return userDAO.getUserByUserId(userId);
+    }
+
+    //Dont think this is working properly yet
+    public LiveData<List<User>> getAllUsers(){
+        return userDAO.getAllUsers();
     }
 
 //    public LiveData<List<eCommerce>> getAllCartsByUserId(int userId){
