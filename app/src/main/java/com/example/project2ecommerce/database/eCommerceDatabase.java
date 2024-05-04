@@ -22,6 +22,7 @@ import java.util.concurrent.Executors;
 public abstract class eCommerceDatabase extends RoomDatabase {
     //define all table names here
     public static final String USER_TABLE = "usertable";
+    public static final String PRODUCT_TABLE = "producttable";
     private static final String DATABASE_NAME = "eCommerceDatabase";
     public static final String eCommerceTable = "eCommerceTable";
 

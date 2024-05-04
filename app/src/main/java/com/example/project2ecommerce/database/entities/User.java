@@ -5,7 +5,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.project2ecommerce.database.eCommerceDatabase;
-
 import java.util.Objects;
 
 @Entity(tableName = eCommerceDatabase.USER_TABLE)
