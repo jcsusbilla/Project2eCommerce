@@ -10,21 +10,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private ActivityLoginBinding binding;
+    ActivityLoginBinding binding;
     private eCommerceRepository repository;
+    public static final String TAG = "CST_ECOMMERCE";//
+    private static final String LOGIN_PAGE_USER_ID = "com.example.project2ecommerce.LOGIN_PAGE_USER_ID";//
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         repository = eCommerceRepository.getRepository(getApplication());
 
         binding.loginButton.setOnClickListener(new View.OnClickListener() {
@@ -47,8 +49,12 @@ public class LoginActivity extends AppCompatActivity {
             if(user != null){
                 String password = binding.passwordLoginEditText.getText().toString();
                 if(password.equals(user.getPassword())){
-                    startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId()));
-                    //startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId(), user.getUsername(), user.getPassword(), user.isAdmin()));
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                    SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
+                    sharedPrefEditor.putInt(getString(R.string.preference_userId_key), user.getId());
+                    sharedPrefEditor.apply();
+                    Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId());
+                    startActivity(intent);
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setSelection(0);
@@ -64,8 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
-
-    static Intent loginIntentFactory(Context context){
+    static Intent loginIntentFactory(Context context){  //new (userId))
         return new Intent(context, LoginActivity.class);
     }
 }

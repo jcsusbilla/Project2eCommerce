@@ -22,7 +22,7 @@
         />
 
     <Button
-        android:id="@+id/editUser"
+        android:id="@+id/editUserButton"
         android:layout_width="164dp"
         android:layout_height="62dp"
         android:layout_marginTop="44dp"
@@ -33,26 +33,39 @@
         app:layout_constraintTop_toBottomOf="@+id/welcome" />
 
     <Button
-        android:id="@+id/editItem"
+        android:id="@+id/editItemButton"
         android:layout_width="164dp"
         android:layout_height="62dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="20dp"
         android:text="@string/edit_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editUser" />
+        app:layout_constraintTop_toBottomOf="@+id/editUserButton" />
 
     <Button
-        android:id="@+id/addItem"
+        android:id="@+id/addItemButton"
         android:layout_width="164dp"
         android:layout_height="62dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="20dp"
         android:text="@string/add_item"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editItem" />
+        app:layout_constraintTop_toBottomOf="@+id/editItemButton" />
+
+    <Button
+        android:id="@+id/deleteUserButton"
+        android:layout_width="164dp"
+        android:layout_height="62dp"
+        android:text="@string/delete_a_user"
+
+        app:layout_constraintBottom_toTopOf="@+id/backToPage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addItemButton"
+        app:layout_constraintVertical_bias="0.169" />
 
     <Button
         android:id="@+id/backToPage"
@@ -64,6 +77,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addItem"
+        app:layout_constraintTop_toBottomOf="@+id/addItemButton"
         app:layout_constraintVertical_bias="0.2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

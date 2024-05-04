@@ -31,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.project2ecommerce.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT = -1;
 
-    ActivityMainBinding binding;
-    private eCommerceRepository repository;
+    private ActivityMainBinding binding;
+    eCommerceRepository repository;
 
     public static final String TAG = "CST_ECOMMERCE";
 
@@ -43,42 +43,56 @@ public class MainActivity extends AppCompatActivity {
     private int loggedInUserId = -1;
     private User user;
 
-    //Buttons
-    Button adminButton;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         repository = eCommerceRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
-        updateSharedPreference();
+        //updateSharedPreference();
+        if(loggedInUserId == 1){
 
+        }
         //user isn't logged in at this point. send to login screen
-        if(loggedInUserId == -1){
+        if(loggedInUserId == LOGGED_OUT){
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+        updateSharedPreference();
 
-        //check if user is an admin, if so display the admin button
-        adminButton = binding.adminButton;
+        //---------------------------------------------------------------------------------------------------------------------
+        //BUTTONS
+        binding.purchaseItemsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(PurchaseItemsActivity.purchaseItemsIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
 
-//        boolean isAdmin = getIntent().getBooleanExtra("isAdmin", true);
-//        if(isAdmin){
-//            adminButton.setVisibility(View.VISIBLE);
-//        } else {
-//            adminButton.setVisibility(View.INVISIBLE);
-//        }
+        binding.adminButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(AdminActivity.adminIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
 
-        binding.purchaseItemsButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               insertECommerceRecord();
-           }
-       });
+        binding.viewPurchasesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(ViewPurchasesActivity.viewPurchasesIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
+
+        binding.changePasswordButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
+
+        //---------------------------------------------------------------------------------------------------------------------
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -106,12 +120,11 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     //@Override
-    protected void onSavedInstanceState(@NonNull Bundle outState){
+    protected void onSaveInstanceState(@NonNull Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_USERID_KEY, Context.MODE_PRIVATE);
+        //SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_USERID_KEY, Context.MODE_PRIVATE);
         updateSharedPreference();
     }
 
@@ -141,13 +154,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        return true;
+        //return true;
+        return super.onPrepareOptionsMenu(menu);//
     }
 
     //validate if user wants to logout --> send them to logout screen
     private void showLogoutDialogue(){
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();                                                   //instantiate memory for alert dialogue
+
         alertBuilder.setMessage("Logout?");
         alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
             @Override
@@ -155,6 +170,7 @@ public class MainActivity extends AppCompatActivity {
                 logout();
             }
         });
+
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -168,8 +184,8 @@ public class MainActivity extends AppCompatActivity {
     private void logout() {
         loggedInUserId = LOGGED_OUT;
         updateSharedPreference();
-        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
-        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
+        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
+        startActivity(LoginActivity.loginIntentFactory(getApplicationContext())); //new
     }
 
     private void updateSharedPreference() {
@@ -179,18 +195,13 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.apply();
     }
     static Intent mainActivityIntentFactory(Context context, int userId){
-    //static Intent mainActivityIntentFactory(Context context, int userId, String username, String password, boolean isAdmin){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
-//        intent.putExtra(MAIN_ACTIVITY_USER_ID, username);
-//        intent.putExtra(MAIN_ACTIVITY_USER_ID, password);
-//        intent.putExtra(MAIN_ACTIVITY_USER_ID, isAdmin);
         return intent;
     }
 
     private void insertECommerceRecord(){
         eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId);
         repository.insertECommerce(ecommerce);
-
     }
 }

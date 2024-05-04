@@ -23,4 +23,9 @@
     <string name="add_item">Add Item</string>
     <string name="edit_user_admin">Edit User/Admin</string>
     <string name="back">Back</string>
+    <string name="purchase">PURCHASE</string>
+    <string name="home">HOME</string>
+    <string name="cart">Cart</string>
+    <string name="checkout">Checkout</string>
+    <string name="delete_a_user">Delete a User</string>
 </resources>
