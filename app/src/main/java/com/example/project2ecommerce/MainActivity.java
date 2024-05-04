@@ -49,18 +49,17 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+
+
         repository = eCommerceRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
-        //updateSharedPreference();
-        if(loggedInUserId == 1){
+        updateSharedPreference();
 
-        }
         //user isn't logged in at this point. send to login screen
-        if(loggedInUserId == LOGGED_OUT){
+        if(loggedInUserId == -1){
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
-        updateSharedPreference();
 
         //---------------------------------------------------------------------------------------------------------------------
         //BUTTONS
@@ -78,10 +77,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        binding.viewPurchasesButton.setOnClickListener(new View.OnClickListener(){
+        binding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                startActivity(ViewPurchasesActivity.viewPurchasesIntentFactory(getApplicationContext(), loggedInUserId));
+            public void onClick(View view) {
+                Intent intent =  ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -99,6 +99,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //---------------------------------------------------------------------------------------------------------------------
+
+
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -127,10 +129,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //@Override
-    protected void onSaveInstanceState(@NonNull Bundle outState){
+    protected void onSavedInstanceState(@NonNull Bundle outState){
         super.onSaveInstanceState(outState);
         outState.putInt(SAVED_INSTANCE_STATE_USERID_KEY, loggedInUserId);
-        //SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_USERID_KEY, Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFERENCE_USERID_KEY, Context.MODE_PRIVATE);
         updateSharedPreference();
     }
 
@@ -190,8 +192,8 @@ public class MainActivity extends AppCompatActivity {
     private void logout() {
         loggedInUserId = LOGGED_OUT;
         updateSharedPreference();
-        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, loggedInUserId);
-        startActivity(LoginActivity.loginIntentFactory(getApplicationContext())); //new
+        getIntent().putExtra(MAIN_ACTIVITY_USER_ID, LOGGED_OUT);
+        startActivity(LoginActivity.loginIntentFactory(getApplicationContext()));
     }
 
     private void updateSharedPreference() {
@@ -200,6 +202,7 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
         sharedPrefEditor.apply();
     }
+
     static Intent mainActivityIntentFactory(Context context, int userId){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
@@ -209,5 +212,6 @@ public class MainActivity extends AppCompatActivity {
     private void insertECommerceRecord(){
         eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId);
         repository.insertECommerce(ecommerce);
+
     }
 }

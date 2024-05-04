@@ -2,18 +2,21 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChangePasswordActivity">
+    tools:context=".SignUpActivity">
+
 
     <TextView
-        android:id="@+id/changePasswordTopTextView"
+        android:id="@+id/signUpTitleTextView"
         android:layout_width="match_parent"
         android:layout_height="61dp"
         android:layout_margin="40dp"
         android:layout_marginTop="112dp"
-        android:text="Change Password"
         android:gravity="center"
+        android:text="Create Account"
+        android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="35sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,47 +24,53 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/changePasswordEditTextPasswordTop"
+        android:id="@+id/signUpUsernameEditText"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
+        android:layout_margin="40dp"
         android:layout_marginTop="56dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Enter Current Password"
-        android:inputType="textPassword"
+        android:hint="Username"
+        android:inputType="text"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordTopTextView" />
-
-
-    <EditText
-        android:id="@+id/changePasswordEditTextPasswordMid"
-        android:layout_width="275dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Enter New Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordEditTextPasswordTop" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpTitleTextView" />
 
     <EditText
-        android:id="@+id/changePasswordEditTextPasswordBot"
+        android:id="@+id/signUpEditTextEnterPassword"
         android:layout_width="275dp"
         android:layout_height="wrap_content"
+        android:layout_margin="40dp"
         android:layout_marginTop="56dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Re-enter New Password"
+        android:hint="Enter Password"
         android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpUsernameEditText" />
+
+    <EditText
+        android:id="@+id/signUpEditTextConfirmPassword"
+        android:layout_width="275dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordEditTextPasswordMid" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextEnterPassword" />
 
     <Button
-        android:id="@+id/changePasswordConfirmButton"
+        android:id="@+id/signUpConfirmButton"
         android:layout_width="208dp"
         android:layout_height="72dp"
         android:layout_marginTop="56dp"
@@ -72,21 +81,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordEditTextPasswordBot" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextConfirmPassword" />
 
-    <Button
-        android:id="@+id/changePasswordCancelButton"
-        android:layout_width="160dp"
-        android:layout_height="72dp"
+    <TextView
+        android:id="@+id/signUpReturnTextView"
+        android:layout_width="250dp"
+        android:layout_height="32dp"
         android:layout_marginTop="56dp"
         android:gravity="center"
-        android:text="Cancel"
-        android:textAlignment="center"
-        android:textSize="25dp"
+        android:text="Already have an account? Tap Here"
+        android:textColor="#57a0d4"
+        android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/changePasswordConfirmButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpConfirmButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
