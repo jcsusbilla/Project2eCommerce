@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 import com.example.project2ecommerce.database.eCommerceDatabase;
 import java.util.Objects;
 
-@Entity(tableName = eCommerceDatabase.PRODUCT_TABLE)
+@Entity(tableName = eCommerceDatabase.ITEM_TABLE)
 public class StoreItem {
     @PrimaryKey(autoGenerate = true)
     //attributes
@@ -19,8 +19,7 @@ public class StoreItem {
     private boolean inStock;
 
     //constructor
-    public StoreItem(int id, String name, String desc, double price, int quantity) {        //maybe add inStock not sure yet
-        this.id = id;
+    public StoreItem(String name, String desc, double price, int quantity) {        //maybe add inStock not sure yet
         this.name = name;
         this.desc = desc;
         this.price = price;

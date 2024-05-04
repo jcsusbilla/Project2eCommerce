@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.MainActivity;
@@ -17,21 +18,22 @@ import java.util.concurrent.Future;
 
 public class eCommerceRepository {
     //attributes
-    private final eCommerceDAO ecommerceDAO;
-    private final UserDAO userDAO;
+    private final eCommerceDAO ecommerceDAO;        //dao
+    private final UserDAO userDAO;                  //dao
+    private final StoreItemDAO storeItemDAO;
     private ArrayList<eCommerce> allCarts;
     private static eCommerceRepository repository;
 
     //constructor
     public eCommerceRepository(Application application){
         eCommerceDatabase db = eCommerceDatabase.getDatabase(application);
-        this.ecommerceDAO = db.ecommerceDAO();
-        this.userDAO = db.userDAO();
+        this.ecommerceDAO = db.ecommerceDAO();          //dao
+        this.userDAO = db.userDAO();                    //dao
+        this.storeItemDAO = db.storeItemDao();
         this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
     }
 
     //methods
-
     public static eCommerceRepository getRepository(Application application){
         if(repository != null){
             return repository;
@@ -75,7 +77,8 @@ public class eCommerceRepository {
             ecommerceDAO.insert(ecommerce);
         });
     }
-
+    //------------------------------------------------------------------------------------------------------------
+    //LiveData for User
     public void insertUser(User... user){
         eCommerceDatabase.databaseWriteExecutor.execute(()->
         {
@@ -91,6 +94,7 @@ public class eCommerceRepository {
         return userDAO.getUserByUserId(userId);
     }
 
+
     //Dont think this is working properly yet
     public LiveData<List<User>> getAllUsers(){
         return userDAO.getAllUsers();
@@ -104,5 +108,16 @@ public class eCommerceRepository {
         eCommerceDatabase.databaseWriteExecutor.execute(() -> {
             userDAO.updateUserPassword(userId, newPassword);
         });
+    }
+    //------------------------------------------------------------------------------------------------------------
+    public void insertUser(StoreItem... storeItem){
+        eCommerceDatabase.databaseWriteExecutor.execute(()->
+        {
+            storeItemDAO.insert(storeItem);
+        });
+    }
+
+    public LiveData<List<StoreItem>> getAllItems(){
+        return storeItemDAO.getAllItems();
     }
 }

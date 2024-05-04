@@ -1,6 +1,7 @@
 package com.example.project2ecommerce;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.LiveData;
 
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
+import com.example.project2ecommerce.database.entities.StoreItem;
+import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.databinding.ActivityMainBinding;
 import com.example.project2ecommerce.databinding.ActivityPurchaseItemsBinding;
 import com.example.project2ecommerce.databinding.ActivityViewCartBinding;
@@ -25,6 +28,7 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         binding = ActivityPurchaseItemsBinding.inflate(getLayoutInflater());        //reference to xml object, inflate converts xml to java reference
         setContentView(binding.getRoot());                                          //object representation of view
         repository = eCommerceRepository.getRepository(getApplication());
+
         userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
 
         binding.backToPage.setOnClickListener(new View.OnClickListener(){

@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.MainActivity;
@@ -18,19 +19,18 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {eCommerce.class, User.class}, version = 1, exportSchema = false)
+@Database(entities = {eCommerce.class, User.class, StoreItem.class}, version = 3, exportSchema = false)      //dao
 public abstract class eCommerceDatabase extends RoomDatabase {
     //define all table names here
-    public static final String USER_TABLE = "usertable";
-    public static final String PRODUCT_TABLE = "producttable";
-    private static final String DATABASE_NAME = "eCommerceDatabase";
-    public static final String eCommerceTable = "eCommerceTable";
+    public static final String USER_TABLE = "usertable";                //dao
+    public static final String ITEM_TABLE = "items";                    //dao
+    private static final String DATABASE_NAME = "eCommerceDatabase";    //dao
+    public static final String eCommerceTable = "eCommerceTable";       //dao
 
     private static volatile eCommerceDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
 
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
 
     public static eCommerceDatabase getDatabase(final Context context){
         if(INSTANCE == null){
@@ -56,6 +56,7 @@ public abstract class eCommerceDatabase extends RoomDatabase {
             super.onCreate(db);                 //pass in the database
             Log.i(MainActivity.TAG, "Database created");
             databaseWriteExecutor.execute(()->{
+                //default users
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
                 //admin
@@ -65,10 +66,19 @@ public abstract class eCommerceDatabase extends RoomDatabase {
                 //user
                 User testUser1 = new User("testuser1", "testuser1");
                 dao.insert(testUser1);
+
+                StoreItemDAO itemDao = INSTANCE.storeItemDao();
+                //itemDao.deleteAll();
+
+                StoreItem Monstera = new StoreItem("Monstera", "monstera desc", 14.99, 5);
+                StoreItem Monstera2 = new StoreItem("Monstera2", "monstera2 desc", 5.43, 5);
+                itemDao.insert(Monstera);
+                itemDao.insert(Monstera2);
             });
         }
     };
 
-    public abstract eCommerceDAO ecommerceDAO();
-    public abstract UserDAO userDAO();
+    public abstract eCommerceDAO ecommerceDAO();        //dao
+    public abstract UserDAO userDAO();                  //dao
+    public abstract StoreItemDAO storeItemDao();
 }

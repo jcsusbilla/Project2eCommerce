@@ -11,7 +11,7 @@ import com.example.project2ecommerce.database.entities.User;
 
 import java.util.List;
 
-@Dao
+@Dao //<-- dont forget this when making new db's *reminder*
 public interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... user);

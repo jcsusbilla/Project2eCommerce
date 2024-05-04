@@ -22,16 +22,17 @@ public class eCommerce {
     private boolean in_stock;
     private LocalDateTime date;
     private int userId;
+    private int itemId; //db
 
     //constructor
-    public eCommerce(String product_name, String product_desc, Double product_price, boolean in_stock, int userId) {        //adjust if need to later
+    public eCommerce(String product_name, String product_desc, Double product_price, boolean in_stock, int userId, int itemId) {        //adjust if need to later
         this.product_name = product_name;
         this.product_desc = product_desc;
         this.product_price = product_price;
         this.in_stock = in_stock;
         this.userId = userId;
         date = LocalDateTime.now();                                             //current time stamp
-
+        this.itemId = itemId;
     }
 
     //getters & setters
@@ -92,17 +93,25 @@ public class eCommerce {
         this.userId = userId;
     }
 
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
+
     //hashcode
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         eCommerce eCommerce = (eCommerce) o;
-        return product_id == eCommerce.product_id && in_stock == eCommerce.in_stock && userId == eCommerce.userId && Objects.equals(product_name, eCommerce.product_name) && Objects.equals(product_desc, eCommerce.product_desc) && Objects.equals(product_price, eCommerce.product_price) && Objects.equals(date, eCommerce.date);
+        return product_id == eCommerce.product_id && in_stock == eCommerce.in_stock && userId == eCommerce.userId && itemId == eCommerce.itemId && Objects.equals(product_name, eCommerce.product_name) && Objects.equals(product_desc, eCommerce.product_desc) && Objects.equals(product_price, eCommerce.product_price) && Objects.equals(date, eCommerce.date);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(product_id, product_name, product_desc, product_price, in_stock, date, userId);
+        return Objects.hash(product_id, product_name, product_desc, product_price, in_stock, date, userId, itemId);
     }
 }

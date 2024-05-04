@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     Double price = 0.0;
     Boolean stock = true;
     private int loggedInUserId = -1;
+    int itemId = 0; //db
     private User user;
 
     @Override
@@ -204,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertECommerceRecord(){
-        eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId);
+        eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId, itemId); //db
         repository.insertECommerce(ecommerce);
 
     }
