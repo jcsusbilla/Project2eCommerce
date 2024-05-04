@@ -28,6 +28,10 @@ public interface UserDAO {
     @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
 
-    @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :userId")
+    //Found that Query was looking for username (WHERE id == :userId) and changed it to look for id - Miguel
+    @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Query("UPDATE " + eCommerceDatabase.USER_TABLE + " SET password = :newPassword WHERE id = :userId")
+    void  updateUserPassword(int userId, String newPassword);
 }

@@ -99,4 +99,10 @@ public class eCommerceRepository {
 //    public LiveData<List<eCommerce>> getAllCartsByUserId(int userId){
 //        return eCommerce.getAllCartsByUserId(userId);
 //    }
+
+    public void updateUserPassword(int userId, String newPassword){
+        eCommerceDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.updateUserPassword(userId, newPassword);
+        });
+    }
 }

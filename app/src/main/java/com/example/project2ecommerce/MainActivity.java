@@ -45,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+
 
         repository = eCommerceRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
@@ -65,6 +66,14 @@ public class MainActivity extends AppCompatActivity {
                insertECommerceRecord();
            }
        });
+
+        binding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
     }
 
     private void loginUser(Bundle savedInstanceState) {
