@@ -9,7 +9,7 @@ import android.view.View;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.databinding.ActivityAdminAddItemBinding;
-import com.example.project2ecommerce.databinding.ActivityAdminEditBinding;
+import com.example.project2ecommerce.databinding.ActivityAdminEditUserBinding;
 
 public class AdminAddItemActivity extends AppCompatActivity {
     ActivityAdminAddItemBinding binding;
@@ -30,6 +30,13 @@ public class AdminAddItemActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 startActivity(AdminActivity.adminIntentFactory(getApplicationContext(), userId));
+            }
+        });
+
+        binding.addItemButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+
             }
         });
     }

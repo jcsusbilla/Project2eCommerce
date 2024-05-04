@@ -8,11 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
-import com.example.project2ecommerce.databinding.ActivityAdminEditBinding;
-import com.example.project2ecommerce.databinding.ActivityCheckoutBinding;
+import com.example.project2ecommerce.databinding.ActivityAdminEditItemBinding;
+import com.example.project2ecommerce.databinding.ActivityAdminEditUserBinding;
 
-public class AdminEditActivity extends AppCompatActivity {
-    ActivityAdminEditBinding binding;
+public class AdminEditUser extends AppCompatActivity {
+    ActivityAdminEditUserBinding binding;
     eCommerceRepository repository;
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project2ecommerce.MAIN_ACTIVITY_USER_ID";
     private int userId = -1;
@@ -20,8 +20,8 @@ public class AdminEditActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_admin_edit);
-        binding = ActivityAdminEditBinding.inflate(getLayoutInflater());        //reference to xml object, inflate converts xml to java reference
+        setContentView(R.layout.activity_admin_edit_user);
+        binding = ActivityAdminEditUserBinding.inflate(getLayoutInflater());        //reference to xml object, inflate converts xml to java reference
         setContentView(binding.getRoot());                                          //object representation of view
         repository = eCommerceRepository.getRepository(getApplication());
         userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
@@ -33,10 +33,15 @@ public class AdminEditActivity extends AppCompatActivity {
             }
         });
 
-    }
+        binding.editButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
 
-    static Intent adminEditIntentFactory(Context context, int userId){
-        Intent intent = new Intent(context, AdminEditActivity.class);
+            }
+        });
+    }
+    static Intent adminEditUserIntentFactory(Context context, int userId){
+        Intent intent = new Intent(context, AdminEditUser.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }

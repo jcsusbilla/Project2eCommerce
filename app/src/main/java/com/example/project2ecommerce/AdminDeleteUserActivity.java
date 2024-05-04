@@ -8,12 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
-import com.example.project2ecommerce.databinding.ActivityCheckoutBinding;
-import com.example.project2ecommerce.databinding.ActivityPurchaseItemsBinding;
-import com.example.project2ecommerce.databinding.ActivityViewCartBinding;
+import com.example.project2ecommerce.databinding.ActivityAdminAddItemBinding;
+import com.example.project2ecommerce.databinding.ActivityAdminDeleteUserBinding;
 
-public class ViewCartActivity extends AppCompatActivity {
-    ActivityViewCartBinding binding;
+public class AdminDeleteUserActivity extends AppCompatActivity {
+    ActivityAdminDeleteUserBinding binding;
     eCommerceRepository repository;
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project2ecommerce.MAIN_ACTIVITY_USER_ID";
     private int userId = -1;
@@ -21,8 +20,8 @@ public class ViewCartActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_cart);
-        binding = ActivityViewCartBinding.inflate(getLayoutInflater());        //reference to xml object, inflate converts xml to java reference
+        setContentView(R.layout.activity_admin_delete_user);
+        binding = ActivityAdminDeleteUserBinding.inflate(getLayoutInflater());        //reference to xml object, inflate converts xml to java reference
         setContentView(binding.getRoot());                                          //object representation of view
         repository = eCommerceRepository.getRepository(getApplication());
         userId = getIntent().getIntExtra(MAIN_ACTIVITY_USER_ID, -1);
@@ -30,27 +29,20 @@ public class ViewCartActivity extends AppCompatActivity {
         binding.backToPage.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(PurchaseItemsActivity.purchaseItemsIntentFactory(getApplicationContext(), userId));
+                startActivity(AdminActivity.adminIntentFactory(getApplicationContext(), userId));
             }
         });
 
-        binding.checkoutButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                startActivity(CheckoutActivity.checkoutIntentFactory(getApplicationContext(), userId));
-            }
-        });
-
-        binding.clearCartButton.setOnClickListener(new View.OnClickListener(){
+        binding.deleteUserButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
 
             }
         });
+
     }
-
-    static Intent viewCartIntentFactory(Context context, int userId){
-        Intent intent = new Intent(context, ViewCartActivity.class);
+    static Intent adminDeleteUserIntentFactory(Context context, int userId){
+        Intent intent = new Intent(context, AdminDeleteUserActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }

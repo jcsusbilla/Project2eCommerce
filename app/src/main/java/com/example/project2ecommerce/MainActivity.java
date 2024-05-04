@@ -91,6 +91,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext(), loggedInUserId));
             }
         });
+        binding.deleteAccountButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
 
         //---------------------------------------------------------------------------------------------------------------------
     }

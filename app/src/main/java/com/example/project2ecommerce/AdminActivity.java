@@ -36,7 +36,7 @@ public class AdminActivity extends AppCompatActivity {
         binding.editUserButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(AdminEditActivity.adminEditIntentFactory(getApplicationContext(), userId));
+                startActivity(AdminEditUser.adminEditUserIntentFactory(getApplicationContext(), userId));
             }
         });
 
@@ -57,7 +57,7 @@ public class AdminActivity extends AppCompatActivity {
         binding.deleteUserButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(AdminAddItemActivity.adminAddItemIntentFactory(getApplicationContext(), userId));
+                startActivity(AdminDeleteUserActivity.adminDeleteUserIntentFactory(getApplicationContext(), userId));
             }
         });
     }
