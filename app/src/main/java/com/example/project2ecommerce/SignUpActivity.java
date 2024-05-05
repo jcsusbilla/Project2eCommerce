@@ -20,6 +20,11 @@ import com.example.project2ecommerce.databinding.ActivitySignUpBinding;
 
 import java.util.List;
 
+/**
+ * Author: Miguel Santiago
+ * This class will handle when a new user wants to sign up to the application. The
+ * user will be prompted to enter a username, a password and confirm the password.
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private ActivitySignUpBinding binding;
@@ -33,12 +38,7 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         repository = eCommerceRepository.getRepository(getApplication());
-//        repository = new eCommerceRepository(getApplication());
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
+
 
         binding.signUpConfirmButton.setOnClickListener(new View.OnClickListener() {
             @Override

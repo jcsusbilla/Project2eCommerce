@@ -15,6 +15,9 @@ import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.databinding.ActivityLoginBinding;
 
+/**
+ * Authors: Miguel Santiago & JC Susbilla
+ */
 public class LoginActivity extends AppCompatActivity {
 
     ActivityLoginBinding binding;

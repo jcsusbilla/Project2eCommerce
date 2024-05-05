@@ -92,7 +92,8 @@ public class MainActivity extends AppCompatActivity {
         binding.deleteAccountButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                startActivity(ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext(), loggedInUserId)); ERRORS
+                Intent intent =  DeleteOwnAccountActivity.deleteOwnAccountIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -214,6 +215,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }
+
+    static Intent mainActivityIntentFactory(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
+
 
     private void insertECommerceRecord(){
         eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId);

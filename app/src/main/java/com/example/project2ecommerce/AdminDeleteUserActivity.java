@@ -19,6 +19,13 @@ import com.example.project2ecommerce.databinding.ActivityAdminDeleteUserBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Author: Miguel Santiago
+ * This class will allow the Administrator to delete a user in the database. upon entering
+ * the activity the Admin will be shown a recycler view with the current users in the
+ * database and their ID. From there the user is asked to enter the ID of the user he
+ * wishes to delete.
+ */
 public class AdminDeleteUserActivity extends AppCompatActivity {
     ActivityAdminDeleteUserBinding binding;
     eCommerceRepository repository;

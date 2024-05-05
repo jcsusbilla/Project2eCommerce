@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DeleteOwnAccountActivity">
+
+    <TextView
+        android:id="@+id/deleteAccountTextViewTitle"
+        android:layout_width="292dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="56dp"
+        android:text="Delete Account"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/deleteAccountTextViewAdvisory"
+        android:layout_width="303dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="40dp"
+        android:gravity="center"
+        android:text="Warning: Once you enter your password and confirm you're account will be permanently deleted."
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAccountTextViewTitle" />
+
+    <EditText
+        android:id="@+id/deleteUserEditTextCurrentPassword"
+        android:layout_width="213dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter Current Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteAccountTextViewAdvisory" />
+
+    <CheckBox
+        android:id="@+id/deleteUserCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:text="I Understand"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteUserEditTextCurrentPassword" />
+
+
+    <Button
+        android:id="@+id/deleteUserDeleteAccountButton"
+        android:layout_width="190dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="36dp"
+        android:text="Delete Account"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteUserCheckBox" />
+
+    <Button
+        android:id="@+id/deleteUserCancelButton"
+        android:layout_width="190dp"
+        android:layout_height="66dp"
+        android:layout_marginTop="36dp"
+        android:textSize="20sp"
+        android:text="Cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/deleteUserDeleteAccountButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>

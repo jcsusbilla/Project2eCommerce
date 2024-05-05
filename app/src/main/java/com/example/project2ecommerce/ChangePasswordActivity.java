@@ -16,6 +16,15 @@ import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.databinding.ActivityChangePasswordBinding;
 
+/**
+ * Author: Miguel Santiago
+ * This class is in charge of changing the current logged in users password. This
+ * will require the user to enter their current password correctly and then
+ * enter the new password as well as confirm. If the current password does
+ * not match the password in the DB it will fail. If the new password does not match the
+ * second check it will not change the password.
+ */
+
 public class ChangePasswordActivity extends AppCompatActivity {
 
     private ActivityChangePasswordBinding binding;

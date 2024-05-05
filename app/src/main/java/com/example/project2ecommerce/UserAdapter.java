@@ -16,9 +16,11 @@ import com.example.project2ecommerce.database.entities.User;
 import java.util.ArrayList;
 import java.util.List;
 
-/*
-Adapter Class for the Recycler view used in the admin delete user activity. - Miguel Santiago
+/**
+ * Author: Miguel Santiago
+ * Adapter Class for the Recycler view used in the admin delete user activity
  */
+
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.ViewHolder> {
 
     private List<String> data = new ArrayList<>();
