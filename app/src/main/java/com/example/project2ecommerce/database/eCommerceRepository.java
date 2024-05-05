@@ -83,6 +83,13 @@ public class eCommerceRepository {
         });
     }
 
+    public void deleteUser(User... user){
+        eCommerceDatabase.databaseWriteExecutor.execute(()->
+        {
+            userDAO.delete(user);
+        });
+    }
+
     public LiveData<User> getUserByUserName(String username) {          //LiveData is automatically muiltithreaded
         return userDAO.getUserByUserName(username);
     }
@@ -91,7 +98,7 @@ public class eCommerceRepository {
         return userDAO.getUserByUserId(userId);
     }
 
-    //Dont think this is working properly yet
+
     public LiveData<List<User>> getAllUsers(){
         return userDAO.getAllUsers();
     }

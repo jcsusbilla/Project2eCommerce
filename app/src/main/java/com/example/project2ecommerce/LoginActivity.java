@@ -55,25 +55,14 @@ public class LoginActivity extends AppCompatActivity {
         userObserver.observe(this, user -> {
             //verify if user is in database
             if(user != null){
-                boolean isAdmin = user.isAdmin();
                 String password = binding.passwordLoginEditText.getText().toString();
                 if(password.equals(user.getPassword())){
-                    if (isAdmin){
-                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-                        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), user.getId());
-                        sharedPrefEditor.apply();
-                        Intent intent = AdminActivity.adminIntentFactory(getApplicationContext(), user.getId());
-                        startActivity(intent);
-                    }else {
-                        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
-                        SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
-                        sharedPrefEditor.putInt(getString(R.string.preference_userId_key), user.getId());
-                        sharedPrefEditor.apply();
-                        Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId());
-                        startActivity(intent);
-                    }
-
+                    SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+                    SharedPreferences.Editor sharedPrefEditor = sharedPreferences.edit();
+                    sharedPrefEditor.putInt(getString(R.string.preference_userId_key), user.getId());
+                    sharedPrefEditor.apply();
+                    Intent intent = MainActivity.mainActivityIntentFactory(getApplicationContext(), user.getId());
+                    startActivity(intent);
                 } else {
                     toastMaker("Invalid password");
                     binding.passwordLoginEditText.setSelection(0);

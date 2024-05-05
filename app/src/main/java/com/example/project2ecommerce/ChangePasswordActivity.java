@@ -91,18 +91,12 @@ public class ChangePasswordActivity extends AppCompatActivity {
                 boolean isAdmin = user.isAdmin();
                 if (currentPassword.equals(user.getPassword())) {
                     repository.updateUserPassword(userId, newPassword);
-                    if (isAdmin){
-                        //Change to admin view
-                        Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
-                        startActivity(intent);
-                    }else {
-                        Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
-                        startActivity(intent);
-                    }
+                    Intent intent =  MainActivity.mainActivityIntentFactory(getApplicationContext(), userId);
+                    startActivity(intent);
                 }else {
                     //print error
-                    toastMaker("Error Current Password is Incorrect");
-                    binding.changePasswordEditTextPasswordTop.setSelection(0);
+//                    toastMaker("Error Current Password is Incorrect");
+//                    binding.changePasswordEditTextPasswordTop.setSelection(0);
                 }
             }else {
                 //print user is not found
