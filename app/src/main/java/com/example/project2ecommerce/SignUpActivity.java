@@ -3,22 +3,19 @@ package com.example.project2ecommerce;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
 import android.view.View;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
-import com.example.project2ecommerce.database.eCommerceDatabase;
-import com.example.project2ecommerce.database.UserDAO;
+import androidx.appcompat.app.AppCompatActivity;
+
+
+
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.databinding.ActivitySignUpBinding;
 
-import java.util.List;
+
 
 /**
  * Author: Miguel Santiago

@@ -13,7 +13,6 @@ import android.view.View;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
-import com.example.project2ecommerce.databinding.ActivityAdminAddItemBinding;
 import com.example.project2ecommerce.databinding.ActivityAdminDeleteUserBinding;
 
 import java.util.ArrayList;
