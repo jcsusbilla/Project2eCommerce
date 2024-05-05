@@ -22,10 +22,16 @@ public interface StoreItemDAO {
     @Delete
     void delete(StoreItem... storeItem);
 
-    @Query("SELECT * FROM " + eCommerceDatabase.ITEM_TABLE + " ORDER BY name")
+    @Query("SELECT * FROM " + eCommerceDatabase.ITEM_TABLE)
     LiveData<List<StoreItem>> getAllItems();
 
     @Query("DELETE from " + eCommerceDatabase.ITEM_TABLE)
     void deleteAll();
+
+    @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where id == :id")
+    LiveData<StoreItem> getItemById(int id);
+
+    @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where name == :name")
+    LiveData<StoreItem> getItemByName(String name);
 
 }

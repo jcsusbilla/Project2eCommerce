@@ -33,4 +33,8 @@
     <string name="add">Add!</string>
     <string name="delete_account">Delete Account</string>
     <string name="clear">Clear</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="enter_item_to_add_to_cart">ENTER ITEM TO ADD TO CART</string>
+    <string name="enter_item_quantity">ENTER ITEM QUANTITY</string>
+    <string name="quantity">QUANTITY</string>
 </resources>

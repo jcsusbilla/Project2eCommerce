@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
 
         //---------------------------------------------------------------------------------------------------------------------
         //BUTTONS
+
         binding.purchaseItemsButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -94,8 +95,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
         //---------------------------------------------------------------------------------------------------------------------
-
-
     }
 
     private void loginUser(Bundle savedInstanceState) {

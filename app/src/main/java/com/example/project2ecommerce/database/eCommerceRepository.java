@@ -121,4 +121,13 @@ public class eCommerceRepository {
     public LiveData<List<StoreItem>> getAllItems(){
         return storeItemDAO.getAllItems();
     }
+
+    public LiveData<StoreItem> getItemById(int itemId) {
+        return storeItemDAO.getItemById(itemId);
+    }
+
+    public LiveData<StoreItem> getItemByItemName(String itemName) {
+        return storeItemDAO.getItemByName(itemName);
+    }
+
 }
