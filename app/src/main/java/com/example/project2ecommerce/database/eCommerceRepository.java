@@ -20,7 +20,7 @@ public class eCommerceRepository {
     //attributes
     private final eCommerceDAO ecommerceDAO;        //dao
     private final UserDAO userDAO;                  //dao
-    private final StoreItemDAO storeItemDAO;
+    private final StoreItemDAO storeItemDAO;        //dao
     private ArrayList<eCommerce> allCarts;
     private static eCommerceRepository repository;
 
@@ -29,7 +29,7 @@ public class eCommerceRepository {
         eCommerceDatabase db = eCommerceDatabase.getDatabase(application);
         this.ecommerceDAO = db.ecommerceDAO();          //dao
         this.userDAO = db.userDAO();                    //dao
-        this.storeItemDAO = db.storeItemDao();
+        this.storeItemDAO = db.storeItemDao();          //dao
         this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
     }
 
@@ -110,6 +110,7 @@ public class eCommerceRepository {
         });
     }
     //------------------------------------------------------------------------------------------------------------
+    //LiveData for StoreItem
     public void insertUser(StoreItem... storeItem){
         eCommerceDatabase.databaseWriteExecutor.execute(()->
         {

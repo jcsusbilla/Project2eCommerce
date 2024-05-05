@@ -49,14 +49,13 @@ public abstract class eCommerceDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
-
     private static final RoomDatabase.Callback addDefaultValues = new RoomDatabase.Callback(){
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db){
             super.onCreate(db);                 //pass in the database
             Log.i(MainActivity.TAG, "Database created");
             databaseWriteExecutor.execute(()->{
-                //default users
+                //DEFAULT USERS
                 UserDAO dao = INSTANCE.userDAO();
                 dao.deleteAll();
                 //admin
@@ -70,15 +69,22 @@ public abstract class eCommerceDatabase extends RoomDatabase {
                 StoreItemDAO itemDao = INSTANCE.storeItemDao();
                 //itemDao.deleteAll();
 
-                StoreItem Monstera = new StoreItem("Monstera", "monstera desc", 14.99, 5);
-                StoreItem Monstera2 = new StoreItem("Monstera2", "monstera2 desc", 5.43, 5);
+                //DEFAULT PLANTS
+                StoreItem Monstera = new StoreItem("Monstera", "A climbing, evergreen perennial vine that is perhaps most noted for its large perforated leaves on thick plant stems and its long cord-like aerial roots.", 14.99, 50);
+                StoreItem MonsteraAlbo = new StoreItem("Monstera Albo", "Unlike the common Monstera, the 'Albo' variety features patches of pure white or light cream on its leaves alongside the traditional deep green.", 75.99, 25);
+                StoreItem MoneyTree = new StoreItem("Money Tree", "a braided tree that can grow up to 6-8 feet indoors or be trained as a bonsai.", 15.99, 30);
+                StoreItem GoldenPothos = new StoreItem("Golden Pothos", "A climbing vine that produces abundant yellow-marbled foliage.", 9.99, 15);
+                StoreItem FiddleLeafFig = new StoreItem("Fiddle Leaf Fig", "A small tropical tree and broadleaf evergreen with large, broad, lyre-shaped, green leaves that can measure up to 18 inches long.", 29.99, 7);
                 itemDao.insert(Monstera);
-                itemDao.insert(Monstera2);
+                itemDao.insert(MonsteraAlbo);
+                itemDao.insert(MoneyTree);
+                itemDao.insert(GoldenPothos);
+                itemDao.insert(FiddleLeafFig);
             });
         }
     };
 
     public abstract eCommerceDAO ecommerceDAO();        //dao
     public abstract UserDAO userDAO();                  //dao
-    public abstract StoreItemDAO storeItemDao();
+    public abstract StoreItemDAO storeItemDao();        //dao
 }
