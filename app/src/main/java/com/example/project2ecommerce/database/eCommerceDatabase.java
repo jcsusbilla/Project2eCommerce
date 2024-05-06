@@ -13,17 +13,19 @@ import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.MainActivity;
+import com.example.project2ecommerce.database.entities.SavedPurchases;
 import com.example.project2ecommerce.database.typeConverters.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {eCommerce.class, User.class, StoreItem.class}, version = 3, exportSchema = false)      //dao
+@Database(entities = {eCommerce.class, User.class, StoreItem.class, SavedPurchases.class}, version = 4, exportSchema = false)      //dao
 public abstract class eCommerceDatabase extends RoomDatabase {
     //define all table names here
     public static final String USER_TABLE = "usertable";                //dao
     public static final String ITEM_TABLE = "items";                    //dao
+    public static final String SAVED_TABLE = "saved";
     private static final String DATABASE_NAME = "eCommerceDatabase";    //dao
     public static final String eCommerceTable = "eCommerceTable";       //dao
 
@@ -87,4 +89,5 @@ public abstract class eCommerceDatabase extends RoomDatabase {
     public abstract eCommerceDAO ecommerceDAO();        //dao
     public abstract UserDAO userDAO();                  //dao
     public abstract StoreItemDAO storeItemDao();        //dao
+    public abstract SavedPurchasesDAO savedPurchasesDAO();
 }

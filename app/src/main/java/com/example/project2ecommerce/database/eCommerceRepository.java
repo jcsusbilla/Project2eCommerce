@@ -3,6 +3,8 @@ package com.example.project2ecommerce.database;
 import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
+
+import com.example.project2ecommerce.database.entities.SavedPurchases;
 import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
@@ -18,6 +20,7 @@ public class eCommerceRepository {
     private final eCommerceDAO ecommerceDAO;        //dao
     private final UserDAO userDAO;                  //dao
     private final StoreItemDAO storeItemDAO;        //dao
+    private final SavedPurchasesDAO savedPurchasesDAO;    //dao
     private ArrayList<eCommerce> allCarts;
     private static eCommerceRepository repository;
 
@@ -27,6 +30,7 @@ public class eCommerceRepository {
         this.ecommerceDAO = db.ecommerceDAO();          //dao
         this.userDAO = db.userDAO();                    //dao
         this.storeItemDAO = db.storeItemDao();          //dao
+        this.savedPurchasesDAO = db.savedPurchasesDAO();
         //this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
     }
 
@@ -155,4 +159,15 @@ public class eCommerceRepository {
     public LiveData<StoreItem> getIdByName(String name){     //return id
         return storeItemDAO.getIdByName(name);
     }
+
+    //------------------------------------------------------------------------------------------------------------
+    //LiveData for SavedPurchases
+
+    public void insertSaved(SavedPurchases... savedPurchases){
+        eCommerceDatabase.databaseWriteExecutor.execute(()->
+        {
+            savedPurchasesDAO.insertSaved(savedPurchases);
+        });
+    }
 }
+

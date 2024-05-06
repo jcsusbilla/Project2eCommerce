@@ -3,6 +3,7 @@ package com.example.project2ecommerce;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -10,30 +11,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import com.example.project2ecommerce.database.StoreItemDAO;
 import com.example.project2ecommerce.database.eCommerceDatabase;
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.StoreItem;
-import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
-import com.example.project2ecommerce.databinding.ActivityMainBinding;
 import com.example.project2ecommerce.databinding.ActivityPurchaseItemsBinding;
-import com.example.project2ecommerce.databinding.ActivityViewCartBinding;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
 public class PurchaseItemsActivity extends AppCompatActivity {
     ActivityPurchaseItemsBinding binding;
     eCommerceRepository repository;
-    public final int MAX_ITEMS = 15;
-    private int defaultAmountItems = 5;
+    //public final int MAX_ITEMS = 15;
+    //private int defaultAmountItems = 5;
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project2ecommerce.MAIN_ACTIVITY_USER_ID";
     private int userId = -1;
 
@@ -47,7 +41,7 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         setContentView(binding.getRoot());                                          //object representation of view
 
         repository = eCommerceRepository.getRepository(getApplication());
-        eCommerceDatabase db = eCommerceDatabase.getDatabase(this);
+        //eCommerceDatabase db = eCommerceDatabase.getDatabase(this);
 
         LiveData<List<StoreItem>> storeItemListObserver = repository.getAllItems();
         //LiveData<StoreItem> itemObserver = repository.getItemById();
@@ -83,6 +77,7 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         TableRow table_row3 = new TableRow(this);
     }
 
+    @SuppressLint("SetTextI18n")
     public void defaultItems(List<StoreItem> StoreItems) {
         //create table column head names
         //int tableId = R.id.itemsTable;
@@ -220,7 +215,6 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         TextView itemName = new TextView(this);
         TextView quantityText = new TextView(this);
         TextView priceText = new TextView(this);
-
 
         Log.i(MainActivity.TAG, plant_name);//extract item name
         Log.i(MainActivity.TAG, String.valueOf(item_price));  //extract item price
