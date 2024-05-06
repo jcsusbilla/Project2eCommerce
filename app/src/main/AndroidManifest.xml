@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ViewPurchases"
+            android:exported="false" />
+        <activity
             android:name=".DeleteOwnAccountActivity"
             android:exported="false" />
         <activity
@@ -35,10 +38,9 @@
             android:exported="false" />
         <activity
             android:name=".ViewPurchasesActivity"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".AdminEditActivity"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".AdminEditActivity" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".AdminActivity"
             android:exported="false" />
