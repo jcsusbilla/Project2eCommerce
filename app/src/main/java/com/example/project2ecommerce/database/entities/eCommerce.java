@@ -1,13 +1,10 @@
 package com.example.project2ecommerce.database.entities;
-import androidx.lifecycle.LiveData;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.project2ecommerce.database.eCommerceDatabase;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Objects;
 
 //represents eCommerce entity

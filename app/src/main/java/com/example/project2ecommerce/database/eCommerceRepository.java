@@ -2,15 +2,11 @@ package com.example.project2ecommerce.database;
 
 import android.app.Application;
 import android.util.Log;
-
 import androidx.lifecycle.LiveData;
-import androidx.room.Query;
-
 import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.MainActivity;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
@@ -84,6 +80,17 @@ public class eCommerceRepository {
     public LiveData<List<eCommerce>> getAllItemsInCart(){
         return ecommerceDAO.getAllItemsInCart();
     }
+
+//    public LiveData<eCommerce> getUserItemById(int itemId) {
+//        return ecommerceDAO.getUserItemById(itemId);
+//    }
+
+//    public void delete(eCommerce... eCommerce){
+//        eCommerceDatabase.databaseWriteExecutor.execute(()->{
+//            ecommerceDAO.delete(this.get;
+//        });
+//    }
+
     //------------------------------------------------------------------------------------------------------------
     //LiveData for User
     public void insertUser(User... user){

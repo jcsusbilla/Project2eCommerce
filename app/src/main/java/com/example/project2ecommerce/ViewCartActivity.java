@@ -3,6 +3,7 @@ package com.example.project2ecommerce;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -17,9 +18,6 @@ import android.widget.Toast;
 
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.database.eCommerceRepository;
-import com.example.project2ecommerce.database.entities.StoreItem;
-import com.example.project2ecommerce.databinding.ActivityCheckoutBinding;
-import com.example.project2ecommerce.databinding.ActivityPurchaseItemsBinding;
 import com.example.project2ecommerce.databinding.ActivityViewCartBinding;
 
 import java.util.List;
@@ -61,7 +59,8 @@ public class ViewCartActivity extends AppCompatActivity {
         binding.checkoutButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(CheckoutActivity.checkoutIntentFactory(getApplicationContext(), userId));
+                addToRecentPurchases();
+                startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), userId));
                 toastMaker("Thank you for your purchase!");
             }
         });
@@ -69,11 +68,24 @@ public class ViewCartActivity extends AppCompatActivity {
         binding.clearCartButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-
+                //clearCart();
             }
         });
     }
 
+//    public void clearCart(){
+//        LiveData<List<eCommerce>> deleteObserver = repository.getAllItemsInCart();
+//        deleteObserver.observe(this, userItems -> {
+//            for(eCommerce item : userItems){
+//                if(item.getUserId() == userId){
+//                    LiveData<eCommerce> user = repository.getUserItemById(userId);
+//
+//                }
+//            }
+//        });
+//    }
+
+    @SuppressLint("SetTextI18n")
     public void populateCart(List<eCommerce> cartItems){
         //create table column head names
         TableLayout table = (TableLayout) findViewById(R.id.itemsTable);            //Initialize a table
@@ -170,6 +182,10 @@ public class ViewCartActivity extends AppCompatActivity {
             TextView text = findViewById(R.id.totalSetText);
             text.setText(String.valueOf(total));
         }
+    }
+
+    public void addToRecentPurchases(){
+
     }
 
     static Intent viewCartIntentFactory(Context context, int userId){
