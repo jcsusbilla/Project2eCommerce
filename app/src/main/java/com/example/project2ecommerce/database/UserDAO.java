@@ -37,7 +37,7 @@ public interface UserDAO {
 
     @Query("UPDATE " + eCommerceDatabase.USER_TABLE + " SET isAdmin = :adminStatus WHERE id = :userId")
     void updateUserAdminStatus(int userId, int adminStatus);
-}
+
 
     @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :userId")
     LiveData<User> getNameByUserId(int userId);

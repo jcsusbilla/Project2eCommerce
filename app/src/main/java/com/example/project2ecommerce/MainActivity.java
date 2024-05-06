@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private User user;
     private int quantity;
 
-    Button adminButton;
+   // Button adminButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
