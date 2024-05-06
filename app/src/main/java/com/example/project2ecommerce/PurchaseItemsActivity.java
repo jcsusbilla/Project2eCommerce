@@ -246,9 +246,6 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         table.addView(row);
     }
 
-    public void updateItemStock(){
-
-    }
     public boolean verifyQuantity(int quantity, StoreItem item){
         if(quantity == 0){
             toastMaker("Nothing added to cart.");

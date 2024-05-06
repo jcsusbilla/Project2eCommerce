@@ -52,7 +52,6 @@
             android:id="@+id/horizontal"
             android:layout_width="fill_parent"
             android:layout_height="500dp">
-
             <RelativeLayout
                 android:id="@+id/layout"
                 android:layout_width="wrap_content"
@@ -60,13 +59,13 @@
                 android:layout_gravity="center_horizontal"
                 android:gravity="center"
                 android:orientation="vertical">
-
                 <TableLayout
                     android:id="@id/itemsTable"
                     android:layout_width="fill_parent"
                     android:layout_height="625dp"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="60dp"></TableLayout>
+                    android:layout_marginTop="60dp">
+                </TableLayout>
             </RelativeLayout>
         </HorizontalScrollView>
     </ScrollView>

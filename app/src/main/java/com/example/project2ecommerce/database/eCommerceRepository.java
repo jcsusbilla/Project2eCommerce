@@ -169,5 +169,8 @@ public class eCommerceRepository {
             savedPurchasesDAO.insertSaved(savedPurchases);
         });
     }
+    public LiveData<List<SavedPurchases>> getAllSavedPurchases(){
+        return savedPurchasesDAO.getAllSavedPurchases();
+    }
 }
 

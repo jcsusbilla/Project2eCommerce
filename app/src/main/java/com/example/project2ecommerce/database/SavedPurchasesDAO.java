@@ -21,6 +21,6 @@ public interface SavedPurchasesDAO {
     @Delete
     void delete (SavedPurchases savedPurchases);
 
-    @Query("SELECT * FROM " + eCommerceDatabase.ITEM_TABLE)
+    @Query("SELECT * FROM " + eCommerceDatabase.SAVED_TABLE)
     LiveData<List<SavedPurchases>> getAllSavedPurchases();
 }

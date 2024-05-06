@@ -13,7 +13,6 @@ import com.example.project2ecommerce.database.entities.User;
 
 import java.util.List;
 
-//STORE IN itemtable
 @Dao
 public interface StoreItemDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)

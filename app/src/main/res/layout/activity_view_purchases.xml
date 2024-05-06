@@ -17,4 +17,40 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="fill_parent"
+        android:layout_height="625dp"
+        android:foregroundGravity="center"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <HorizontalScrollView
+            android:id="@+id/horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="500dp">
+
+            <RelativeLayout
+                android:id="@+id/layout"
+                android:layout_width="wrap_content"
+                android:layout_height="625dp"
+                android:layout_gravity="center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TableLayout
+                    android:id="@id/itemsTable"
+                    android:layout_width="fill_parent"
+                    android:layout_height="625dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="60dp"></TableLayout>
+            </RelativeLayout>
+        </HorizontalScrollView>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
