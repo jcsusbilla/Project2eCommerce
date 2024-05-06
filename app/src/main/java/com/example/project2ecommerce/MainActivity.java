@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
@@ -45,12 +46,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-
-
         repository = eCommerceRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
         updateSharedPreference();
+
+//        TextView welcome = findViewById(R.id.displayName);
+//        welcome.setText(user.getUsername());
 
         //user isn't logged in at this point. send to login screen
         if(loggedInUserId == -1){
@@ -149,8 +150,9 @@ public class MainActivity extends AppCompatActivity {
 //            return false;
 //        }
         //get user
-        item.setTitle("Logout");
-        //item.setTitle(user.getUsername());
+        //item.setTitle("Logout");
+        String username = user.getUsername();
+        item.setTitle(username);
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {

@@ -77,11 +77,22 @@ public abstract class eCommerceDatabase extends RoomDatabase {
                 StoreItem MoneyTree = new StoreItem("Money Tree", "a braided tree that can grow up to 6-8 feet indoors or be trained as a bonsai.", 15.99, 30);
                 StoreItem GoldenPothos = new StoreItem("Golden Pothos", "A climbing vine that produces abundant yellow-marbled foliage.", 9.99, 15);
                 StoreItem FiddleLeafFig = new StoreItem("Fiddle Leaf Fig", "A small tropical tree and broadleaf evergreen with large, broad, lyre-shaped, green leaves that can measure up to 18 inches long.", 29.99, 7);
+                StoreItem Fern = new StoreItem("Fern", "N/A", 5.99, 0);
+                StoreItem SnakePlant = new StoreItem("Snake Plant", "N/A", 10.99, 45);
+                StoreItem TreePhilodendron = new StoreItem("Tree Philodendron", "N/A", 14.99, 17);
+                StoreItem JadePlant = new StoreItem("Jade Plant", "N/A", 19.99, 5);
+                StoreItem StringOfPearls = new StoreItem("String of Pearls", "N/A", 12.99, 20);
+
                 itemDao.insert(Monstera);
                 itemDao.insert(MonsteraAlbo);
                 itemDao.insert(MoneyTree);
                 itemDao.insert(GoldenPothos);
                 itemDao.insert(FiddleLeafFig);
+                itemDao.insert(Fern);
+                itemDao.insert(SnakePlant);
+                itemDao.insert(TreePhilodendron);
+                itemDao.insert(JadePlant);
+                itemDao.insert(StringOfPearls);
             });
         }
     };
