@@ -112,4 +112,10 @@ public class eCommerceRepository {
             userDAO.updateUserPassword(userId, newPassword);
         });
     }
+
+    public void updateUserAdminStatus(int userId, int adminStatus){
+        eCommerceDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.updateUserAdminStatus(userId, adminStatus);
+        });
+    }
 }

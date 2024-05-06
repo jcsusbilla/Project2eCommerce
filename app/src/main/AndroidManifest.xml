@@ -22,16 +22,10 @@
             android:name=".SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".AdminEditUser"
+            android:name=".AdminEditUserActivity"
             android:exported="false" />
         <activity
             android:name=".AdminDeleteUserActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminAddItemActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AdminEditItemActivity"
             android:exported="false" />
         <activity
             android:name=".CheckoutActivity"
@@ -40,14 +34,11 @@
             android:name=".ViewCartActivity"
             android:exported="false" />
         <activity
-            android:name=".ChangePasswordActivity"
-            android:exported="false" />
-        <activity
             android:name=".ViewPurchasesActivity"
             android:exported="false" />
-        <activity
-            android:name=".AdminEditActivity"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".AdminEditActivity"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".AdminActivity"
             android:exported="false" />
