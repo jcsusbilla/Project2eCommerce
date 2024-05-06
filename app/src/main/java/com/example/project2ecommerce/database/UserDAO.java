@@ -34,4 +34,7 @@ public interface UserDAO {
 
     @Query("UPDATE " + eCommerceDatabase.USER_TABLE + " SET password = :newPassword WHERE id = :userId")
     void  updateUserPassword(int userId, String newPassword);
+
+    @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :userId")
+    LiveData<User> getNameByUserId(int userId);
 }

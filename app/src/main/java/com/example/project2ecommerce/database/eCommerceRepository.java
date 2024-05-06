@@ -112,6 +112,9 @@ public class eCommerceRepository {
         return userDAO.getUserByUserId(userId);
     }
 
+    public LiveData<User> getNameByUserId(int userId) {          //LiveData is automatically muiltithreaded
+        return userDAO.getNameByUserId(userId);
+    }
 
     //Dont think this is working properly yet
     public LiveData<List<User>> getAllUsers(){

@@ -66,13 +66,6 @@ public class ViewCartActivity extends AppCompatActivity {
                 toastMaker("Thank you for your purchase!");
             }
         });
-
-        binding.clearCartButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //clearCart();
-            }
-        });
     }
 
 //    public void clearCart(){

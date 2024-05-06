@@ -50,9 +50,6 @@ public class MainActivity extends AppCompatActivity {
         loginUser(savedInstanceState);
         updateSharedPreference();
 
-//        TextView welcome = findViewById(R.id.displayName);
-//        welcome.setText(user.getUsername());
-
         //user isn't logged in at this point. send to login screen
         if(loggedInUserId == -1){
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
@@ -98,6 +95,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+//        TextView welcome = findViewById(R.id.displayName);
+//        String username = repository.getNameByUserId(loggedInUserId).toString();
+        //welcome.setText(user.getUsername().toString());
         //---------------------------------------------------------------------------------------------------------------------
     }
 
@@ -150,9 +151,7 @@ public class MainActivity extends AppCompatActivity {
 //            return false;
 //        }
         //get user
-        //item.setTitle("Logout");
-        String username = user.getUsername();
-        item.setTitle(username);
+        item.setTitle("Logout");
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
