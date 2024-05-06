@@ -106,8 +106,7 @@ public class ChangePasswordActivity extends AppCompatActivity {
                     startActivity(intent);
                 }else {
                     //print error
-//                    toastMaker("Error Current Password is Incorrect");
-//                    binding.changePasswordEditTextPasswordTop.setSelection(0);
+                    binding.changePasswordEditTextPasswordTop.setError("Current Password is incorrect");
                 }
             }else {
                 //print user is not found
