@@ -86,11 +86,11 @@ public class PurchaseItemsActivity extends AppCompatActivity {
     public void defaultItems(List<StoreItem> StoreItems) {
         //create table column head names
         //int tableId = R.id.itemsTable;
-        TableLayout table = (TableLayout) findViewById(R.id.itemsTable);     //Initialize a table
-        TableRow tableRow = new TableRow(this);                     //set the TableRow for the whole item within the TableLayout
+        TableLayout table = (TableLayout) findViewById(R.id.itemsTable);            //Initialize a table
+        TableRow tableRow = new TableRow(this);                             //set the TableRow for the whole item within the TableLayout
 
         //create the table columns that go in each row
-        TextView item_name = new TextView(this);                          //Creates new TextView to add to the TableRow
+        TextView item_name = new TextView(this);                            //Creates new TextView to add to the TableRow
         TextView item_quantity = new TextView(this);
         TextView item_price = new TextView(this);
 

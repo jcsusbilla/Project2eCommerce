@@ -14,10 +14,15 @@ public interface eCommerceDAO {
     void insert(eCommerce... ecommerce);
 
     @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable)
-    //@Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " ORDER BY date DESC")
-    List<eCommerce> getAllRecords();
+    LiveData<List<eCommerce>> getAllItemsInCart();
+
+
+
 
     @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " WHERE userId = :userId")
     //@Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " WHERE userId = :userId ORDER BY date DESC")
     LiveData<List<eCommerce>> getAllCartsByUserId(int userId);
+
+//    @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " WHERE userId = :userId")
+//    LiveData<List<eCommerce>> getUsersItems(int userId);
 }

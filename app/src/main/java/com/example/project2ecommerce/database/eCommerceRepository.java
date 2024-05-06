@@ -31,7 +31,7 @@ public class eCommerceRepository {
         this.ecommerceDAO = db.ecommerceDAO();          //dao
         this.userDAO = db.userDAO();                    //dao
         this.storeItemDAO = db.storeItemDao();          //dao
-        this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
+        //this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
     }
 
     //methods
@@ -55,22 +55,22 @@ public class eCommerceRepository {
         return null;
     }
 
-    public ArrayList<eCommerce> getAllCarts() {
-        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
-                new Callable<ArrayList<eCommerce>>() {
-                    @Override
-                    public ArrayList<eCommerce> call() throws Exception {
-                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
-                    }
-                }
-            );
-        try {
-            return future.get();
-        } catch (InterruptedException | ExecutionException e){
-            Log.i(MainActivity.TAG, "Problem when getting all in repository");
-        }
-        return null;
-    }
+//    public ArrayList<eCommerce> getAllCarts() {
+//        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
+//                new Callable<ArrayList<eCommerce>>() {
+//                    @Override
+//                    public ArrayList<eCommerce> call() throws Exception {
+//                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
+//                    }
+//                }
+//            );
+//        try {
+//            return future.get();
+//        } catch (InterruptedException | ExecutionException e){
+//            Log.i(MainActivity.TAG, "Problem when getting all in repository");
+//        }
+//        return null;
+//    }
 
     //------------------------------------------------------------------------------------------------------------
     //LiveData for Cart items
@@ -79,6 +79,10 @@ public class eCommerceRepository {
         {
             ecommerceDAO.insert(ecommerce);
         });
+    }
+
+    public LiveData<List<eCommerce>> getAllItemsInCart(){
+        return ecommerceDAO.getAllItemsInCart();
     }
     //------------------------------------------------------------------------------------------------------------
     //LiveData for User

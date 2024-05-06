@@ -37,4 +37,5 @@
     <string name="enter_item_to_add_to_cart">ENTER ITEM TO ADD TO CART</string>
     <string name="enter_item_quantity">ENTER ITEM QUANTITY</string>
     <string name="quantity">QUANTITY</string>
+    <string name="total">TOTAL:</string>
 </resources>
