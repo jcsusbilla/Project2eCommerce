@@ -19,7 +19,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
         <HorizontalScrollView
             android:id="@+id/horizontal"
             android:layout_width="fill_parent"
@@ -28,10 +27,10 @@
             <RelativeLayout
                 android:id="@+id/layout"
                 android:layout_gravity="center_horizontal"
-                android:layout_width="fill_parent"
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
                 android:layout_height="625dp"
-                android:gravity="center"
-                android:orientation="vertical">
+                android:gravity="center">
 
                 <TableLayout
                     android:id="@id/itemsTable"
@@ -39,7 +38,6 @@
                     android:layout_height="625dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="60dp">
-
                 </TableLayout>
             </RelativeLayout>
         </HorizontalScrollView>

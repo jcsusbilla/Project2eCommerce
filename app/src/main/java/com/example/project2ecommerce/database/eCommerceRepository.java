@@ -4,6 +4,7 @@ import android.app.Application;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.room.Query;
 
 import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
@@ -71,6 +72,8 @@ public class eCommerceRepository {
         return null;
     }
 
+    //------------------------------------------------------------------------------------------------------------
+    //LiveData for Cart items
     public void insertECommerce(eCommerce ecommerce){
         eCommerceDatabase.databaseWriteExecutor.execute(()->
         {
@@ -126,8 +129,19 @@ public class eCommerceRepository {
         return storeItemDAO.getItemById(itemId);
     }
 
-    public LiveData<StoreItem> getItemByItemName(String itemName) {
-        return storeItemDAO.getItemByName(itemName);
+    public LiveData<StoreItem> getItemByItemName(String name) {
+        return storeItemDAO.getItemByName(name);
     }
 
+    public LiveData<StoreItem> getPriceByName(String name){     //return price
+        return storeItemDAO.getPriceByName(name);
+    }
+
+    public LiveData<StoreItem> getStockByName(String name){     //return stock
+        return storeItemDAO.getStockByName(name);
+    }
+
+    public LiveData<StoreItem> getIdByName(String name){     //return id
+        return storeItemDAO.getIdByName(name);
+    }
 }

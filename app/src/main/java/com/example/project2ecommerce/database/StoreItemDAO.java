@@ -31,6 +31,15 @@ public interface StoreItemDAO {
     @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where id == :id")
     LiveData<StoreItem> getItemById(int id);
 
+    @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where id == :name")
+    LiveData<StoreItem> getIdByName(String name);
+
+    @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where price == :name")
+    LiveData<StoreItem> getPriceByName(String name);
+
+    @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where inStock == :name")
+    LiveData<StoreItem> getStockByName(String name);
+
     @Query("Select * from " + eCommerceDatabase.ITEM_TABLE + " where name == :name")
     LiveData<StoreItem> getItemByName(String name);
 

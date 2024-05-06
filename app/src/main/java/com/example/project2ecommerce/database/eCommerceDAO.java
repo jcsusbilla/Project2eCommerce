@@ -11,11 +11,13 @@ import java.util.List;
 @Dao
 public interface eCommerceDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(eCommerce ecommerce);
+    void insert(eCommerce... ecommerce);
 
-    @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " ORDER BY date DESC")
+    @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable)
+    //@Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " ORDER BY date DESC")
     List<eCommerce> getAllRecords();
 
-    @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " WHERE userId = :userId ORDER BY date DESC")
+    @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " WHERE userId = :userId")
+    //@Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " WHERE userId = :userId ORDER BY date DESC")
     LiveData<List<eCommerce>> getAllCartsByUserId(int userId);
 }

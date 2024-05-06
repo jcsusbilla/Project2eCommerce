@@ -37,7 +37,6 @@ public class PurchaseItemsActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project2ecommerce.MAIN_ACTIVITY_USER_ID";
     private int userId = -1;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,14 +49,15 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         repository = eCommerceRepository.getRepository(getApplication());
         eCommerceDatabase db = eCommerceDatabase.getDatabase(this);
 
-        LiveData<List<StoreItem>> storeItemObserver = repository.getAllItems();
-        storeItemObserver.observe(this, storeItems -> {
+        LiveData<List<StoreItem>> storeItemListObserver = repository.getAllItems();
+        //LiveData<StoreItem> itemObserver = repository.getItemById();
+        storeItemListObserver.observe(this, storeItems -> {
             if(storeItems != null){
                 defaultItems(storeItems);
+            } else {
+                toastMaker("StoreItem DB Error");//testing
             }
         });
-
-        addItemToPurchaseList("Plant",15.66,3);
 
         binding.backToPage.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -81,8 +81,6 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         TableRow table_row1 = new TableRow(this);
         TableRow table_row2 = new TableRow(this);
         TableRow table_row3 = new TableRow(this);
-
-
     }
 
     public void defaultItems(List<StoreItem> StoreItems) {
@@ -185,30 +183,30 @@ public class PurchaseItemsActivity extends AppCompatActivity {
             }
         }
 
-
         binding.addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String plantName = binding.plantNameEntry.getText().toString();
-                int plantQuantity;
-                String enteredQuantity = binding.quantityEntry.getText().toString();
+                String name = binding.plantNameEntry.getText().toString();
+                LiveData<StoreItem> itemObserver = repository.getItemByItemName(name);
                 try{
-                    if(plantName.isEmpty()){
-                        toastMaker("Plant name cannot be blank.");
-                    } else {
-                        plantQuantity = Integer.parseInt(enteredQuantity);
-                        for(StoreItem storeItem : StoreItems) {
-                            if(plantName.equals(storeItem.getName())) {
-                                if(verifyQuantity(plantQuantity)){
-                                    toastMaker("(" + plantQuantity + ") "+ plantName + " added to cart");
-                                    //add plant to cart db
-                                    //update item stock
-                                }
+                    String enteredQuantity = binding.quantityEntry.getText().toString();
+                    int quantity = Integer.parseInt(enteredQuantity);
+                    itemObserver.observe(PurchaseItemsActivity.this, item -> {
+                        if(verifyQuantity(quantity, item)){
+                            if(item != null){
+                                eCommerce cartItem = new eCommerce(item.getName(), item.getPrice(), item.isInStock(), userId, item.getId(), quantity);
+                                repository.insertECommerce(cartItem);
+                                toastMaker("(" + item.getName() + ") "+ name + " added to cart");
                             }
+                        } else{
+                            toastMaker("Invalid Quantity.");
                         }
-                    }
+                        //reset user entry fields
+                        binding.plantNameEntry.setText("");
+                        binding.quantityEntry.setText("");
+                    });
                 } catch (NumberFormatException e){
-                    toastMaker("Please enter a valid number.");
+                    toastMaker("Please enter a valid number!");
                 }
             }
         });
@@ -254,21 +252,20 @@ public class PurchaseItemsActivity extends AppCompatActivity {
         table.addView(row);
     }
 
-    public void addPlantToCart(){
-        //add plant to cart
-    }
     public void updateItemStock(){
 
     }
-    public boolean verifyQuantity(int quantity){
+    public boolean verifyQuantity(int quantity, StoreItem item){
         if(quantity == 0){
             toastMaker("Nothing added to cart.");
             return false;
         }
-        if(quantity > 0){
+        if(quantity > item.getQuantity()){
+            toastMaker("Not enough in stock");
+            return false;
+        } else {
             return true;
         }
-        return false;
     }
 
     private void toastMaker(String message) {

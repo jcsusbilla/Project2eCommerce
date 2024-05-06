@@ -43,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     private int loggedInUserId = -1;
     int itemId = 0; //db
     private User user;
+    private int quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -204,7 +205,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void insertECommerceRecord(){
-        eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId, itemId); //db
+        //eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId, itemId); //db
+        eCommerce ecommerce = new eCommerce(itemName, price, stock, loggedInUserId, itemId, quantity); //db
         repository.insertECommerce(ecommerce);
 
     }
