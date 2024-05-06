@@ -17,7 +17,7 @@ public interface UserDAO {
     void insert(User... user);
 
     @Delete
-    void delete(User user);
+    void delete(User... user);
 
     @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " ORDER BY username")
     LiveData<List<User>> getAllUsers();
@@ -34,6 +34,10 @@ public interface UserDAO {
 
     @Query("UPDATE " + eCommerceDatabase.USER_TABLE + " SET password = :newPassword WHERE id = :userId")
     void  updateUserPassword(int userId, String newPassword);
+
+    @Query("UPDATE " + eCommerceDatabase.USER_TABLE + " SET isAdmin = :adminStatus WHERE id = :userId")
+    void updateUserAdminStatus(int userId, int adminStatus);
+}
 
     @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :userId")
     LiveData<User> getNameByUserId(int userId);

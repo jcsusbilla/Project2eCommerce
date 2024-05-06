@@ -35,6 +35,7 @@ public class eCommerceRepository {
     }
 
     //methods
+
     public static eCommerceRepository getRepository(Application application){
         if(repository != null){
             return repository;
@@ -55,22 +56,22 @@ public class eCommerceRepository {
         return null;
     }
 
-//    public ArrayList<eCommerce> getAllCarts() {
-//        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
-//                new Callable<ArrayList<eCommerce>>() {
-//                    @Override
-//                    public ArrayList<eCommerce> call() throws Exception {
-//                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
-//                    }
-//                }
-//            );
-//        try {
-//            return future.get();
-//        } catch (InterruptedException | ExecutionException e){
-//            Log.i(MainActivity.TAG, "Problem when getting all in repository");
-//        }
-//        return null;
-//    }
+    public ArrayList<eCommerce> getAllCarts() {
+        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
+                new Callable<ArrayList<eCommerce>>() {
+                    @Override
+                    public ArrayList<eCommerce> call() throws Exception {
+                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
+                    }
+                }
+            );
+        try {
+            return future.get();
+        } catch (InterruptedException | ExecutionException e){
+            Log.i(MainActivity.TAG, "Problem when getting all in repository");
+        }
+        return null;
+    }
 
     //------------------------------------------------------------------------------------------------------------
     //LiveData for Cart items
@@ -104,6 +105,13 @@ public class eCommerceRepository {
         });
     }
 
+    public void deleteUser(User... user){
+        eCommerceDatabase.databaseWriteExecutor.execute(()->
+        {
+            userDAO.delete(user);
+        });
+    }
+
     public LiveData<User> getUserByUserName(String username) {          //LiveData is automatically muiltithreaded
         return userDAO.getUserByUserName(username);
     }
@@ -111,6 +119,7 @@ public class eCommerceRepository {
     public LiveData<User> getUserByUserId(int userId) {          //LiveData is automatically muiltithreaded
         return userDAO.getUserByUserId(userId);
     }
+
 
     public LiveData<User> getNameByUserId(int userId) {          //LiveData is automatically muiltithreaded
         return userDAO.getNameByUserId(userId);
@@ -130,6 +139,13 @@ public class eCommerceRepository {
             userDAO.updateUserPassword(userId, newPassword);
         });
     }
+
+    public void updateUserAdminStatus(int userId, int adminStatus){
+        eCommerceDatabase.databaseWriteExecutor.execute(() -> {
+            userDAO.updateUserAdminStatus(userId, adminStatus);
+        });
+    }
+
     //------------------------------------------------------------------------------------------------------------
     //LiveData for StoreItem
     public void insertUser(StoreItem... storeItem){

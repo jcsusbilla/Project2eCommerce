@@ -36,23 +36,10 @@ public class AdminActivity extends AppCompatActivity {
         binding.editUserButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-                startActivity(AdminEditUser.adminEditUserIntentFactory(getApplicationContext(), userId));
+                startActivity(AdminEditUserActivity.adminEditUserIntentFactory(getApplicationContext(), userId));
             }
         });
 
-        binding.editItemButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                startActivity(AdminEditItemActivity.adminEditItemIntentFactory(getApplicationContext(), userId));
-            }
-        });
-
-        binding.addItemButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                startActivity(AdminAddItemActivity.adminAddItemIntentFactory(getApplicationContext(), userId));
-            }
-        });
 
         binding.deleteUserButton.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -66,5 +53,9 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(context, AdminActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
+    }
+
+    static Intent adminIntentFactory(Context context){
+        return new Intent(context, AdminActivity.class);
     }
 }

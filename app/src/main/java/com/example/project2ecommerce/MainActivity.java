@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private User user;
     private int quantity;
 
+    Button adminButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +57,8 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = LoginActivity.loginIntentFactory(getApplicationContext());
             startActivity(intent);
         }
+
+
 
         //---------------------------------------------------------------------------------------------------------------------
         //BUTTONS
@@ -91,7 +95,8 @@ public class MainActivity extends AppCompatActivity {
         binding.deleteAccountButton.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
-//                startActivity(ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext(), loggedInUserId)); ERRORS
+                Intent intent =  DeleteOwnAccountActivity.deleteOwnAccountIntentFactory(getApplicationContext());
+                startActivity(intent);
             }
         });
 
@@ -103,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loginUser(Bundle savedInstanceState) {
+
+        adminButton = findViewById(R.id.adminButton);
         //check shared preference for logged in user
         SharedPreferences sharedPreferences = getApplication().getSharedPreferences(getString(R.string.preference_file_key),
                 Context.MODE_PRIVATE); //preferences only applicable to this program
@@ -122,6 +129,12 @@ public class MainActivity extends AppCompatActivity {
         userObserver.observe(this, user -> {
             this.user = user;
             if(this.user != null) {
+                boolean isAdmin = user.isAdmin();
+                if (isAdmin){
+                    adminButton.setVisibility(View.VISIBLE);
+                }else {
+                    adminButton.setVisibility(View.GONE);
+                }
                 invalidateOptionsMenu();
             }
         });
@@ -206,6 +219,12 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
         return intent;
     }
+
+    static Intent mainActivityIntentFactory(Context context){
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
+
 
     private void insertECommerceRecord(){
         //eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId, itemId); //db
