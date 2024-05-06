@@ -1,8 +1,6 @@
 package com.example.project2ecommerce;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -12,13 +10,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
@@ -31,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
     static final String SAVED_INSTANCE_STATE_USERID_KEY = "com.example.project2ecommerce.SAVED_INSTANCE_STATE_USERID_KEY";
     private static final int LOGGED_OUT = -1;
 
-    ActivityMainBinding binding;
-    private eCommerceRepository repository;
+    private ActivityMainBinding binding;
+    eCommerceRepository repository;
 
     public static final String TAG = "CST_ECOMMERCE";
 
@@ -41,18 +37,15 @@ public class MainActivity extends AppCompatActivity {
     Double price = 0.0;
     Boolean stock = true;
     private int loggedInUserId = -1;
+    int itemId = 0; //db
     private User user;
-
-    //Buttons
-    Button adminButton;
+    private int quantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
         binding = ActivityMainBinding.inflate(getLayoutInflater());
-
+        setContentView(binding.getRoot());
         repository = eCommerceRepository.getRepository(getApplication());
         loginUser(savedInstanceState);
         updateSharedPreference();
@@ -63,22 +56,50 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
-        //check if user is an admin, if so display the admin button
-        adminButton = binding.adminButton;
+        //---------------------------------------------------------------------------------------------------------------------
+        //BUTTONS
 
-//        boolean isAdmin = getIntent().getBooleanExtra("isAdmin", true);
-//        if(isAdmin){
-//            adminButton.setVisibility(View.VISIBLE);
-//        } else {
-//            adminButton.setVisibility(View.INVISIBLE);
-//        }
+        binding.purchaseItemsButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(PurchaseItemsActivity.purchaseItemsIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
 
-        binding.purchaseItemsButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View v) {
-               insertECommerceRecord();
-           }
-       });
+        binding.viewPurchasesButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(ViewPurchasesActivity.viewPurchasesIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
+
+        binding.adminButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                startActivity(AdminActivity.adminIntentFactory(getApplicationContext(), loggedInUserId));
+            }
+        });
+
+        binding.changePasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =  ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext());
+                startActivity(intent);
+            }
+        });
+
+        binding.deleteAccountButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+//                startActivity(ChangePasswordActivity.changePasswordIntentFactory(getApplicationContext(), loggedInUserId)); ERRORS
+            }
+        });
+
+
+//        TextView welcome = findViewById(R.id.displayName);
+//        String username = repository.getNameByUserId(loggedInUserId).toString();
+        //welcome.setText(user.getUsername().toString());
+        //---------------------------------------------------------------------------------------------------------------------
     }
 
     private void loginUser(Bundle savedInstanceState) {
@@ -106,7 +127,6 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
     //@Override
     protected void onSavedInstanceState(@NonNull Bundle outState){
         super.onSaveInstanceState(outState);
@@ -132,7 +152,6 @@ public class MainActivity extends AppCompatActivity {
 //        }
         //get user
         item.setTitle("Logout");
-        //item.setTitle(user.getUsername());
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
@@ -141,13 +160,15 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
-        return true;
+        //return true;
+        return super.onPrepareOptionsMenu(menu);//
     }
 
     //validate if user wants to logout --> send them to logout screen
     private void showLogoutDialogue(){
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();                                                   //instantiate memory for alert dialogue
+
         alertBuilder.setMessage("Logout?");
         alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
             @Override
@@ -155,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
                 logout();
             }
         });
+
         alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -178,18 +200,16 @@ public class MainActivity extends AppCompatActivity {
         sharedPrefEditor.putInt(getString(R.string.preference_userId_key), loggedInUserId);
         sharedPrefEditor.apply();
     }
+
     static Intent mainActivityIntentFactory(Context context, int userId){
-    //static Intent mainActivityIntentFactory(Context context, int userId, String username, String password, boolean isAdmin){
         Intent intent = new Intent(context, MainActivity.class);
         intent.putExtra(MAIN_ACTIVITY_USER_ID, userId);
-//        intent.putExtra(MAIN_ACTIVITY_USER_ID, username);
-//        intent.putExtra(MAIN_ACTIVITY_USER_ID, password);
-//        intent.putExtra(MAIN_ACTIVITY_USER_ID, isAdmin);
         return intent;
     }
 
     private void insertECommerceRecord(){
-        eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId);
+        //eCommerce ecommerce = new eCommerce(itemName,desc, price, stock, loggedInUserId, itemId); //db
+        eCommerce ecommerce = new eCommerce(itemName, price, stock, loggedInUserId, itemId, quantity); //db
         repository.insertECommerce(ecommerce);
 
     }

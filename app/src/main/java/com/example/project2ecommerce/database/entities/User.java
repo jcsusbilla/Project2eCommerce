@@ -5,7 +5,6 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import com.example.project2ecommerce.database.eCommerceDatabase;
-
 import java.util.Objects;
 
 @Entity(tableName = eCommerceDatabase.USER_TABLE)
@@ -17,10 +16,10 @@ public class User {
     private boolean isAdmin;
 
     //constructor
-    public User(String username, String password, boolean isAdmin) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
+        isAdmin = false;
     }
 
     //getters and setters

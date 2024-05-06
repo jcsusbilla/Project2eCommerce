@@ -11,7 +11,7 @@ import com.example.project2ecommerce.database.entities.User;
 
 import java.util.List;
 
-@Dao
+@Dao //<-- dont forget this when making new db's *reminder*
 public interface UserDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User... user);
@@ -28,6 +28,13 @@ public interface UserDAO {
     @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :username")
     LiveData<User> getUserByUserName(String username);
 
-    @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :userId")
+    //Found that Query was looking for username (WHERE id == :userId) and changed it to look for id - Miguel
+    @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE id == :userId")
     LiveData<User> getUserByUserId(int userId);
+
+    @Query("UPDATE " + eCommerceDatabase.USER_TABLE + " SET password = :newPassword WHERE id = :userId")
+    void  updateUserPassword(int userId, String newPassword);
+
+    @Query("SELECT * FROM " + eCommerceDatabase.USER_TABLE + " WHERE username == :userId")
+    LiveData<User> getNameByUserId(int userId);
 }

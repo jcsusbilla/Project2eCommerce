@@ -23,4 +23,19 @@
     <string name="add_item">Add Item</string>
     <string name="edit_user_admin">Edit User/Admin</string>
     <string name="back">Back</string>
+    <string name="purchase">PURCHASE</string>
+    <string name="home">HOME</string>
+    <string name="cart">Cart</string>
+    <string name="checkout">Checkout</string>
+    <string name="delete_a_user">Delete a User</string>
+    <string name="delete">Delete!</string>
+    <string name="edit">Edit!</string>
+    <string name="add">Add!</string>
+    <string name="delete_account">Delete Account</string>
+    <string name="clear">Clear</string>
+    <string name="add_to_cart">Add To Cart</string>
+    <string name="enter_item_to_add_to_cart">ENTER ITEM TO ADD TO CART</string>
+    <string name="enter_item_quantity">ENTER ITEM QUANTITY</string>
+    <string name="quantity">QUANTITY</string>
+    <string name="total">TOTAL:</string>
 </resources>
