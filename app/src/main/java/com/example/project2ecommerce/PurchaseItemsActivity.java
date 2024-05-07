@@ -21,6 +21,13 @@ import com.example.project2ecommerce.databinding.ActivityPurchaseItemsBinding;
 
 import java.util.List;
 
+/**
+ *  Author: JC SUSBILLA
+ *  Class for populating an items listing page with available shop plants.
+ *  Users will type the name of the plant and the quantity they'd like to purchase.
+ *  Clicking checkout will purchase the items, send the purchased items to a DAO recording previous purchases, and user is sent back to homescreen.
+ */
+
 public class PurchaseItemsActivity extends AppCompatActivity {
     ActivityPurchaseItemsBinding binding;
     eCommerceRepository repository;
@@ -69,10 +76,10 @@ public class PurchaseItemsActivity extends AppCompatActivity {
     //methods
     //finish later for Admin Add Items function
     public void addItem(List<StoreItem> products, String name, double price, int quantity) {
-        TableLayout table_layout = new TableLayout(this);
-        TableRow table_row1 = new TableRow(this);
-        TableRow table_row2 = new TableRow(this);
-        TableRow table_row3 = new TableRow(this);
+//        TableLayout table_layout = new TableLayout(this);
+//        TableRow table_row1 = new TableRow(this);
+//        TableRow table_row2 = new TableRow(this);
+//        TableRow table_row3 = new TableRow(this);
     }
 
     @SuppressLint("SetTextI18n")
@@ -189,7 +196,7 @@ public class PurchaseItemsActivity extends AppCompatActivity {
                             if(item != null){
                                 eCommerce cartItem = new eCommerce(item.getName(), item.getPrice(), item.isInStock(), userId, item.getId(), quantity);
                                 repository.insertECommerce(cartItem);
-                                toastMaker("(" + item.getQuantity() + ") "+ name + " added to cart");
+                                toastMaker("(" + enteredQuantity + ") "+ name + " added to cart");
                             }
                         } else{
                             toastMaker("Invalid Quantity.");

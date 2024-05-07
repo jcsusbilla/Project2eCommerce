@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -14,12 +13,19 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.databinding.ActivityMainBinding;
+
+/**
+ *  Author: JC SUSBILLA
+ *  Main Landing Page for the app.
+ *  Admin button only works for admin.
+ *  3 options to view available items to purchase, go to view previously purchased items, and to delete account.
+ */
 
 public class MainActivity extends AppCompatActivity {
     private static final String MAIN_ACTIVITY_USER_ID = "com.example.project2ecommerce.MAIN_ACTIVITY_USER_ID"; //change package name when pushed to github
@@ -41,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private User user;
     private int quantity;
 
-   // Button adminButton;
+    //Button adminButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
         userObserver.observe(this, user -> {
             this.user = user;
             if(this.user != null) {
-                boolean isAdmin = user.isAdmin();
+//                boolean isAdmin = user.isAdmin();
 //                if (isAdmin){
 //                    adminButton.setVisibility(View.VISIBLE);
 //                }else {

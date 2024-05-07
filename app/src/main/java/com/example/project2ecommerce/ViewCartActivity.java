@@ -21,7 +21,13 @@ import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.databinding.ActivityViewCartBinding;
 
+import java.math.BigDecimal;
 import java.util.List;
+
+/**
+ *  Author: JC SUSBILLA
+ *  Class for populating cart page with all of the user's saved items in the cart
+ */
 
 public class ViewCartActivity extends AppCompatActivity {
     ActivityViewCartBinding binding;
@@ -162,7 +168,11 @@ public class ViewCartActivity extends AppCompatActivity {
 
             }
             TextView text = findViewById(R.id.totalSetText);
-            text.setText(String.valueOf(total));
+            int precision = 2;
+            BigDecimal bd = new BigDecimal(total);
+            bd = bd.setScale(precision, BigDecimal.ROUND_HALF_UP);
+            double newTotal = bd.doubleValue();
+            text.setText(String.valueOf(newTotal));
         }
     }
 

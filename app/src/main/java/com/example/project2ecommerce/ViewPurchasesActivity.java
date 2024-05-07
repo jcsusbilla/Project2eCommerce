@@ -19,6 +19,11 @@ import com.example.project2ecommerce.databinding.ActivityViewPurchasesBinding;
 
 import java.util.List;
 
+/**
+ *  Author: JC SUSBILLA
+ *  Class for displaying current user's previous purchases.
+ */
+
 public class ViewPurchasesActivity extends AppCompatActivity {
     ActivityViewPurchasesBinding binding;
     eCommerceRepository repository;
