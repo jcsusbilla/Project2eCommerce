@@ -13,6 +13,9 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".ViewCartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewPurchasesActivity"
             android:exported="false" />
         <activity
@@ -32,9 +35,6 @@
             android:exported="false" />
         <activity
             android:name=".CheckoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ViewCartActivity"
             android:exported="false" />
         <activity
             android:name=".ViewPurchasesActivity"

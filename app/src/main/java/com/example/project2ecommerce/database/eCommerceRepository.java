@@ -56,22 +56,22 @@ public class eCommerceRepository {
         return null;
     }
 
-    public ArrayList<eCommerce> getAllCarts() {
-        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
-                new Callable<ArrayList<eCommerce>>() {
-                    @Override
-                    public ArrayList<eCommerce> call() throws Exception {
-                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
-                    }
-                }
-            );
-        try {
-            return future.get();
-        } catch (InterruptedException | ExecutionException e){
-            Log.i(MainActivity.TAG, "Problem when getting all in repository");
-        }
-        return null;
-    }
+//    public ArrayList<eCommerce> getAllCarts() {
+//        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
+//                new Callable<ArrayList<eCommerce>>() {
+//                    @Override
+//                    public ArrayList<eCommerce> call() throws Exception {
+//                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
+//                    }
+//                }
+//            );
+//        try {
+//            return future.get();
+//        } catch (InterruptedException | ExecutionException e){
+//            Log.i(MainActivity.TAG, "Problem when getting all in repository");
+//        }
+//        return null;
+//    }
 
     //------------------------------------------------------------------------------------------------------------
     //LiveData for Cart items

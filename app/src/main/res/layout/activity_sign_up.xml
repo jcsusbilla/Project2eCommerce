@@ -7,4 +7,94 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+
+    <TextView
+        android:id="@+id/signUpTitleTextView"
+        android:layout_width="match_parent"
+        android:layout_height="61dp"
+        android:layout_margin="40dp"
+        android:layout_marginTop="112dp"
+        android:gravity="center"
+        android:text="Create Account"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="35dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/signUpUsernameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Username"
+        android:inputType="text"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpTitleTextView" />
+
+    <EditText
+        android:id="@+id/signUpEditTextEnterPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_marginTop="56dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Enter Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpUsernameEditText" />
+
+    <EditText
+        android:id="@+id/signUpEditTextConfirmPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="40dp"
+        android:layout_marginTop="40dp"
+        android:ems="10"
+        android:gravity="center"
+        android:hint="Confirm Password"
+        android:inputType="textPassword"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextEnterPassword" />
+
+    <Button
+        android:id="@+id/signUpConfirmButton"
+        android:layout_width="208dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="36dp"
+        android:gravity="center"
+        android:text="Confirm"
+        android:textSize="25dp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpEditTextConfirmPassword" />
+
+    <TextView
+        android:id="@+id/signUpReturnTextView"
+        android:layout_width="250dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:text="Already have an account? Tap Here"
+        android:textColor="#57a0d4"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpConfirmButton" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
