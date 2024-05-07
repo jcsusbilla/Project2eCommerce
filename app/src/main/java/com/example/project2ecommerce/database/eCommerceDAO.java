@@ -15,6 +15,8 @@ import java.util.List;
 public interface eCommerceDAO {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(eCommerce... ecommerce);
+    @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable + " ORDER BY date DESC")
+    List<eCommerce> getAllRecords();
 
     @Query("SELECT * FROM " + eCommerceDatabase.eCommerceTable)
     LiveData<List<eCommerce>> getAllItemsInCart();

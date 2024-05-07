@@ -30,6 +30,7 @@ public class eCommerceRepository {
         this.userDAO = db.userDAO();                        //dao
         this.storeItemDAO = db.storeItemDao();              //dao
         this.savedPurchasesDAO = db.savedPurchasesDAO();
+        this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
     }
 
     //methods
