@@ -2,7 +2,6 @@ package com.example.project2ecommerce;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +14,6 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.example.project2ecommerce.database.eCommerceDatabase;
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.eCommerce;
@@ -191,7 +189,7 @@ public class PurchaseItemsActivity extends AppCompatActivity {
                             if(item != null){
                                 eCommerce cartItem = new eCommerce(item.getName(), item.getPrice(), item.isInStock(), userId, item.getId(), quantity);
                                 repository.insertECommerce(cartItem);
-                                toastMaker("(" + item.getName() + ") "+ name + " added to cart");
+                                toastMaker("(" + item.getQuantity() + ") "+ name + " added to cart");
                             }
                         } else{
                             toastMaker("Invalid Quantity.");

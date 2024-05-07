@@ -3,7 +3,6 @@ package com.example.project2ecommerce.database;
 import android.app.Application;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
-
 import com.example.project2ecommerce.database.entities.SavedPurchases;
 import com.example.project2ecommerce.database.entities.StoreItem;
 import com.example.project2ecommerce.database.entities.User;
@@ -17,25 +16,23 @@ import java.util.concurrent.Future;
 
 public class eCommerceRepository {
     //attributes
-    private final eCommerceDAO ecommerceDAO;        //dao
-    private final UserDAO userDAO;                  //dao
-    private final StoreItemDAO storeItemDAO;        //dao
-    private final SavedPurchasesDAO savedPurchasesDAO;    //dao
+    private final eCommerceDAO ecommerceDAO;                //dao
+    private final UserDAO userDAO;                          //dao
+    private final StoreItemDAO storeItemDAO;                //dao
+    private final SavedPurchasesDAO savedPurchasesDAO;      //dao
     private ArrayList<eCommerce> allCarts;
     private static eCommerceRepository repository;
 
     //constructor
     public eCommerceRepository(Application application){
         eCommerceDatabase db = eCommerceDatabase.getDatabase(application);
-        this.ecommerceDAO = db.ecommerceDAO();          //dao
-        this.userDAO = db.userDAO();                    //dao
-        this.storeItemDAO = db.storeItemDao();          //dao
+        this.ecommerceDAO = db.ecommerceDAO();              //dao
+        this.userDAO = db.userDAO();                        //dao
+        this.storeItemDAO = db.storeItemDao();              //dao
         this.savedPurchasesDAO = db.savedPurchasesDAO();
-        //this.allCarts = (ArrayList<eCommerce>) this.ecommerceDAO.getAllRecords(); //cast into ArrayList
     }
 
     //methods
-
     public static eCommerceRepository getRepository(Application application){
         if(repository != null){
             return repository;
@@ -56,23 +53,6 @@ public class eCommerceRepository {
         return null;
     }
 
-//    public ArrayList<eCommerce> getAllCarts() {
-//        Future<ArrayList<eCommerce>> future = eCommerceDatabase.databaseWriteExecutor.submit(
-//                new Callable<ArrayList<eCommerce>>() {
-//                    @Override
-//                    public ArrayList<eCommerce> call() throws Exception {
-//                        return (ArrayList<eCommerce>) ecommerceDAO.getAllRecords();
-//                    }
-//                }
-//            );
-//        try {
-//            return future.get();
-//        } catch (InterruptedException | ExecutionException e){
-//            Log.i(MainActivity.TAG, "Problem when getting all in repository");
-//        }
-//        return null;
-//    }
-
     //------------------------------------------------------------------------------------------------------------
     //LiveData for Cart items
     public void insertECommerce(eCommerce ecommerce){
@@ -85,16 +65,6 @@ public class eCommerceRepository {
     public LiveData<List<eCommerce>> getAllItemsInCart(){
         return ecommerceDAO.getAllItemsInCart();
     }
-
-//    public LiveData<eCommerce> getUserItemById(int itemId) {
-//        return ecommerceDAO.getUserItemById(itemId);
-//    }
-
-//    public void delete(eCommerce... eCommerce){
-//        eCommerceDatabase.databaseWriteExecutor.execute(()->{
-//            ecommerceDAO.delete(this.get;
-//        });
-//    }
 
     //------------------------------------------------------------------------------------------------------------
     //LiveData for User

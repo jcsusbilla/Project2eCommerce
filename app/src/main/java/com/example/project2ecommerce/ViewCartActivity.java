@@ -16,6 +16,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.project2ecommerce.database.entities.SavedPurchases;
 import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.databinding.ActivityViewCartBinding;
@@ -62,13 +63,6 @@ public class ViewCartActivity extends AppCompatActivity {
                 addToRecentPurchases();
                 startActivity(MainActivity.mainActivityIntentFactory(getApplicationContext(), userId));
                 toastMaker("Thank you for your purchase!");
-            }
-        });
-
-        binding.clearCartButton.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                //clearCart();
             }
         });
     }
@@ -173,7 +167,17 @@ public class ViewCartActivity extends AppCompatActivity {
     }
 
     public void addToRecentPurchases(){
-
+        LiveData<List<eCommerce>> cartListObserver = repository.getAllItemsInCart();
+        cartListObserver.observe(this, cartItems -> {
+            if(cartItems != null) {
+                for (eCommerce item : cartItems) {
+                    if(item.getUserId() == userId) {
+                        SavedPurchases saved = new SavedPurchases(item.getProduct_name(), item.getQuantity(), item.getProduct_price(), userId);
+                        repository.insertSaved(saved);
+                    }
+                }
+            }
+        });
     }
 
     static Intent viewCartIntentFactory(Context context, int userId){

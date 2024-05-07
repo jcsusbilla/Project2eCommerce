@@ -37,9 +37,6 @@ public class AdminDeleteUserActivity extends AppCompatActivity {
     private UserAdapter userAdapter;
     private User user;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -88,9 +85,6 @@ public class AdminDeleteUserActivity extends AppCompatActivity {
                 startActivity(AdminActivity.adminIntentFactory(getApplicationContext(), userId));
             }
         });
-
-
-
     }
 
     /*

@@ -2,7 +2,6 @@ package com.example.project2ecommerce;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
-
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -14,10 +13,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.SavedPurchases;
-import com.example.project2ecommerce.database.entities.eCommerce;
 import com.example.project2ecommerce.databinding.ActivityViewPurchasesBinding;
 
 import java.util.List;

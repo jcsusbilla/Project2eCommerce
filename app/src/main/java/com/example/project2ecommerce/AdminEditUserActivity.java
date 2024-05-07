@@ -5,12 +5,10 @@ import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-
 import com.example.project2ecommerce.database.eCommerceRepository;
 import com.example.project2ecommerce.database.entities.User;
 import com.example.project2ecommerce.databinding.ActivityAdminEditUserBinding;
@@ -79,8 +77,6 @@ public class AdminEditUserActivity extends AppCompatActivity {
                 startActivity(AdminActivity.adminIntentFactory(getApplicationContext()));
             }
         });
-
-
     }
 
     /*
@@ -107,7 +103,6 @@ public class AdminEditUserActivity extends AppCompatActivity {
                     Intent intent =  AdminActivity.adminIntentFactory(getApplicationContext());
                     startActivity(intent);
                 }
-
             }
         });
     }
